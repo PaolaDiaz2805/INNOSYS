@@ -118,33 +118,18 @@
     <h1>CREA LA TAREA </h1>
     <h2>Llena el formulario</h2>
     <label for="nom">TÍTULO DEL TRABAJO </label><br>
-    <input type="text" id="nom" name="tt" placeholder="Nombra a tu trabajo (obligatorio)" /><br>
+    <input type="text" name="tt" placeholder="Nombra a tu trabajo (obligatorio)" /><br>
     <label for="mat">INSTRUCCIONES</label><br>
-    <input type="text" id="mat" name="in" placeholder="(opcional)" /><br>
-    <input type="file" id="archivo" name="arc"placeholder="Puedes adjuntar aqui una ficha de trabajo (opcional)" />
+    <input type="text"  name="in" placeholder="(opcional)" /><br>
+    <input type="file"  name="arc"placeholder="Puedes adjuntar aqui una ficha de trabajo (opcional)" />
     <label for="archivo">Adjunta</label>
      <br><input type="submit" value="Crear" />
          <input type="reset" value="Limpiar" />
-<div class="form-container">
-    <h2>Asignar Tarea</h2>
-
-    <label for="curso">Para:</label>
-    <select id="curso">
-      <option> Cursos </option><option>PRIMERO A</option><option>PRIMERO B</option><option>SEGUNDO A</option><option>SEGUNDO B</option><option>TERCERO A</option>
-      <option>TERCERO B</option><option>CUARTO A</option><option>CUARTO B</option><option>QUINTO A</option><option>QUINTO B</option><option>SEXTO A</option><option>SEXTO B</option>
-    </select>
-    <label for="alumnos">Asignar a:</label>
-    <br><input type="text" id="alumnos" placeholder="Todos los alumnos">
-   <br> <label for="puntos">Puntos:</label>
-    <br><input type="number" id="puntos" value="100">
     <br><label for="fecha">Fecha de entrega:</label>
     <br><input type="date" id="fecha">
-    <br><label for="tema">Tema:</label>
-    <br><input type="text" id="tema" placeholder="Sin tema">
-    <br><label for="rubrica">Rúbrica:</label>
-    <textarea id="rubrica" placeholder="Añadir rúbrica"></textarea>
+   
 
-    <button type="submit">Guardar</button>
+
   </div>
 
 </form>
