@@ -7,34 +7,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <title>Document</title>
      <style>
-        body {
-           position: relative;
-           margin: 0;
-           background-image: url('../diseño/logo.png');
-           background-repeat: space;
-           background-attachment: fixed;
-           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           color: rgb(0, 0, 0);
-           z-index: 1;
+         body {
+            position: relative;
+            margin: 0;
+            height: 100%;
+            background-image: url("../diseño/logo.png");
+            background-repeat: repeat;
+            background-position: center;
+            background-size: calc(70vw / 2) calc(70vh / 2);
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(0, 0, 0);
+            z-index: 1;
         }
 
         body::before {
-           content: "";
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100%;
-           height: 100%;
-           background-color: rgba(255, 255, 255, 0.7);
-           z-index: -1;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: -1;
         }
-        form{
-            background: linear-gradient(135deg, #cc0000,white, #003366);
-            border-color: rgb(0, 0, 0);
-            border-style: double;
+
+        form {
+            background: linear-gradient(135deg, #2d41b3ff, white, #003366);
+            border: double 3px rgb(0, 0, 0);
             border-radius: 15px;
             width: 400px;
             padding: 40px;
@@ -44,7 +47,7 @@
         form:hover{
             transform: scale(1.04);
         }
-        input, #x{
+        input, #x, select{
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -61,17 +64,17 @@
         }
         h1{
             font-family: Arial, Helvetica, sans-serif;
-            color: rgb(255, 255, 255);
+            color: rgba(28, 28, 70, 1);
             font-size: 50px;
         }
         h2{
             font-family: Arial, Helvetica, sans-serif;
-            color: rgb(255, 255, 255);
+            color: rgba(28, 28, 70, 1);
         }
         input[type="submit"],
         input[type="reset"] ,#x {
             width: 48%;
-            background-color:rgb(170, 10, 10);
+            background-color:rgba(28, 28, 70, 1);
             color: white;
             font-weight: bold;
             border: 3px solid;
@@ -94,6 +97,7 @@
         #x{
           text-decoration:none;
         }
+
     </style>
 </head>
 <body>

@@ -9,36 +9,38 @@
    <style>
 
         body {
-            position: relative;
-            margin: 0;
-            height: 100%;
-            background-image: url("../diseño/logo.png");
-            background-repeat: repeat;
-            background-position: center;
-            background-size: calc(70vw / 2) calc(70vh / 2);
-            background-attachment: fixed;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: rgb(0, 0, 0);
-            z-index: 1;
+           position: relative;
+           margin: 0;
+           background-image: url("https://www.lasallecbb.edu.bo/images/Imagenes/LogoPagSF.png");
+           background-repeat: space;
+           background-attachment: fixed;
+           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           color: rgb(0, 0, 0);
+           z-index: 1;
+        }
+        html, body {
+           height: 100%;
+           margin: 0;
+           padding: 0;
         }
 
         body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height:110%;
-            background-color: rgba(255, 255, 255, 0.7);
-            z-index: -1;
+           content: "";
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background-color: rgba(255, 255, 255, 0.7);
+           z-index: -1;
         }
-
-        form {
-            background: linear-gradient(135deg, #2d41b3ff, white, #003366);
-            border: double 3px rgb(0, 0, 0);
+        form{
+            background: linear-gradient(135deg, #cc0000,white, #003366);
+            border-color: rgb(0, 0, 0);
+            border-style: double;
             border-radius: 15px;
             width: 400px;
             padding: 40px;
@@ -65,17 +67,17 @@
         }
         h1{
             font-family: Arial, Helvetica, sans-serif;
-            color: rgba(28, 28, 70, 1);
+            color: rgb(255, 255, 255);
             font-size: 50px;
         }
         h2{
             font-family: Arial, Helvetica, sans-serif;
-            color: rgba(28, 28, 70, 1);
+            color: rgb(255, 255, 255);
         }
         input[type="submit"],
-        input[type="reset"]  {
+        input[type="reset"] {
             width: 48%;
-            background-color:rgba(28, 28, 70, 1);
+            background-color:rgb(170, 10, 10);
             color: white;
             font-weight: bold;
             border: 3px solid;
@@ -95,18 +97,16 @@
             margin-bottom: 10px;
             display: block;
         }
-      
-
     </style>
 </head>
 <body>
-    <center><form action="logueomost.php" method="post" novalidate>
+    <center><form action="logmost.php" method="post" novalidate>
     <h1>BIENVENIDO!!</h1>
     <h2>Inicia Sesión</h2>
     <label for="ci">CI</label><br>
-    <input type="text" id="ci" name="pci" placeholder="Ej: 1273567" /><br>
+    <input type="text" id="ci" name="l1" placeholder="Ej: 1273567" /><br>
     <label for="co">Contraseña</label><br>
-    <input type="password" id="co" name="pco" placeholder="********" /><br>
+    <input type="password" id="co" name="l2" placeholder="********" /><br>
     <div class="form-buttons"><br>
      <br><input type="submit" value="Enviar" />
          <input type="reset" value="Limpiar" />
@@ -115,24 +115,24 @@
 <script> 
  $("form").validate({
     rules:{
-        pci:{
+        l1:{
           required: true,
           digits: true,
           maxlength: 10
         },
-        pco:{
+        l2:{
           required: true,
           minlength: 6,
           maxlength: 10
         }
     },
     messages:{
-      pci:{
+      l1:{
           required: "Este campo es obligatorio",
           digits: "Solo se permiten números",
           maxlength: "Máximo 10 dígitos"
     },
-    pco:{
+    l2:{
           required: "Este campo es obligatorio",
           minlength: "Mínimo 6 caracteres",
           maxlength: "Máximo 10 caracteres"
