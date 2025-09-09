@@ -9,8 +9,15 @@ $servername="localhost";
     if($conn->connect_error) {
         echo "Ocurrio un error :( vuelve a intentarlo";
     }
-session_start();
-    $ci=$_POST['ci'];
+    session_start();
+
+if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
+    header("Location:../diseño/principal.php");
+    exit();
+}
+$ci = $_SESSION['ci'];
+$rol=$_SESSION['rol'];
+    
     $sql="SELECT * FROM usuario WHERE id='$ci'";
     $resultado = $conn->query($sql);
     $sql2="SELECT * FROM informacion WHERE ci='$ci'";
