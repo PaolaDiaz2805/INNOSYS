@@ -114,19 +114,21 @@
   </style>
 </head>
 <body>
- <form action="crearmost.php" method="post" novalidate>
+ <form action="tareamost.php" method="post" novalidate>
     <h1>CREA LA TAREA </h1>
     <h2>Llena el formulario</h2>
     <label for="nom">TÍTULO DEL TRABAJO </label><br>
     <input type="text" name="tt" placeholder="Nombra a tu trabajo (obligatorio)" /><br>
     <label for="mat">INSTRUCCIONES</label><br>
     <input type="text"  name="in" placeholder="(opcional)" /><br>
+    <label for="mat">TEMA</label><br>
+    <input type="text"  name="tem" placeholder="A que tema pertenecera esta tarea" /><br>
+    <label for="mat">PUNTOS:</label><br>
+    <input type="number"  name="pun" placeholder="100" /><br>
     <input type="file"  name="arc"placeholder="Puedes adjuntar aqui una ficha de trabajo (opcional)" />
     <label for="archivo">Adjunta</label>
      <br><input type="submit" value="Crear" />
          <input type="reset" value="Limpiar" />
-    <br><label for="fecha">Fecha de entrega:</label>
-    <br><input type="date" id="fecha">
    
 
 
