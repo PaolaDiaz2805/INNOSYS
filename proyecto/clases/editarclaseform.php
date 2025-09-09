@@ -7,39 +7,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <title>Document</title>
     <style>
-         body {
-           position: relative;
-           margin: 0;
-           background-image: url("https://www.lasallecbb.edu.bo/images/Imagenes/LogoPagSF.png");
-           background-repeat: space;
-           background-attachment: fixed;
-           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           color: rgb(0, 0, 0);
-           z-index: 1;
-        }
-         html, body {
-           height: 100%;
-           margin: 0;
-           padding: 0;
+        
+        body {
+            position: relative;
+            margin: 0;
+            height: 100%;
+            background-image: url("../diseño/logo.png");
+            background-repeat: repeat;
+            background-position: center;
+            background-size: calc(70vw / 2) calc(70vh / 2);
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(0, 0, 0);
+            z-index: 1;
         }
 
         body::before {
-           content: "";
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100%;
-           height: 100%;
-           background-color: rgba(255, 255, 255, 0.7);
-           z-index: -1;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: -1;
         }
-        form{
-            background: linear-gradient(135deg, #cc0000,white, #003366);
-            border-color: rgb(0, 0, 0);
-            border-style: double;
+
+        form {
+            background: linear-gradient(135deg, #2d41b3ff, white, #003366);
+            border: double 3px rgb(0, 0, 0);
             border-radius: 15px;
             width: 400px;
             padding: 40px;
@@ -49,7 +48,7 @@
         form:hover{
             transform: scale(1.04);
         }
-        input{
+        input,select{
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -63,11 +62,20 @@
              margin-bottom: 5px;
              font-weight: bold;
              font-size: 16px;
-            }
+        }
+        h1{
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgba(28, 28, 70, 1);
+            font-size: 50px;
+        }
+        h2{
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgba(28, 28, 70, 1);
+        }
         input[type="submit"],
         input[type="reset"] {
             width: 48%;
-            background-color:rgb(170, 10, 10);
+            background-color:rgba(28, 28, 70, 1);
             color: white;
             font-weight: bold;
             border: 3px solid;
@@ -76,7 +84,7 @@
         }
 
         input[type="submit"]:hover,
-        input[type="reset"]:hover {
+        input[type="reset"]:hover{
             transform: scale(1.05);
             opacity: 0.9;
         }
@@ -86,7 +94,8 @@
             margin-top: -15px;
             margin-bottom: 10px;
             display: block;
-        }  
+        }
+    
         .Btn {
             display: flex;
             align-items: center;
@@ -100,7 +109,7 @@
             overflow: hidden;
             transition-duration: .3s;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-            background-color: rgb(192, 17, 17);
+            background-color: rgba(28, 28, 70, 1);
         }
         .sign {
             width: 100%;
@@ -148,11 +157,29 @@
     </style>
 </head>
 <body>
-     <form action="editarmost.php" method="post" novalidate>
-    <h1>EDITAR TU CLASE</h1>
+     <form action="crearmost.php" method="post" novalidate>
+    <h1>CREA TU CLASE</h1>
     <h2>Llena el formulario</h2>
-    <label for="nom">CODIGO DE LA CLASE</label><br>
-    <input type="text" id="cod" name="c1" placeholder="102293" /><br>
+    <label for="nom">NOMBRE</label><br>
+    <input type="text"  name="p1" value=<?=$nombre?>   /><br>
+    <label for="cur">CURSO</label><br>
+    <select name="p2" value=<?=$curso?> >
+      <option value="primero">1ro A sec.</option>
+      <option value="primero">1ro B sec.</option>
+      <option value="segundo">2do A sec.</option>
+      <option value="segundo"> 2do B sec. </option>
+      <option value="tercero"> 3ro A sec.</option>
+      <option value="tercero"> 3ro B sec.</option>
+      <option value="cuarto"> 4to A sec.</option>
+      <option value="cuarto"> 4to B sec.</option>
+      <option value="quinto"> 5to A sec.</option>
+      <option value="quinto"> 5to B sec.</option>
+      <option value="sexto"> 6to A sec.</option>
+      <option value="sexto"> 6to B sec.</option>
+    
+    </select><br>
+    <input type="text" name="p3" value=<?=$codigo?>  /><br>
+    <div class="form-buttons"><br>
      <br><input type="submit" value="Crear" />
          <input type="reset" value="Limpiar" />
           <button id="sal" class="Btn" type="button">
@@ -170,14 +197,38 @@
     rules:{
         c1:{
           required: true,
-          maxlength: 5
+          maxlength: 30
+        },
+        c2:{
+          required: true,
+          maxlength: 15
+        },
+        c3:{
+            required:true,
+            maxlength:20
+        },
+        c4:{
+            required:true,
+            maxlength:5
         }
     },
     messages:{
       c1:{
           required: "Este campo es obligatorio",
-          maxlength: "Máximo 5 caracteres"
+          maxlength: "Máximo 30 caracteres"
     },
+    c2:{
+          required: "Este campo es obligatorio",
+          maxlength: "Máximo 15 caracteres"
+    },
+    c3:{
+          required: "Este campo es obligatorio",
+          maxlength: "Máximo 20 caracteres"
+    },
+    c4:{
+          required: "Este campo es obligatorio",
+          maxlength: "Máximo 5 caracteres"
+    }
  }
 });
 $("#sal").on("click", function() {

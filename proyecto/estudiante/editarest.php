@@ -9,7 +9,19 @@
     if($conn->connect_error) {
        echo "Ocurrio un error :( vuelve a intentarlo";
     }
-    $ci=$_POST['pci']; 
+    session_start();
+$ci=$_SESSION['ci'];
+$rol=$_SESSION['rol'];
+
+ if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
+    header("Location:../diseño/principal.php");
+    exit();
+ }
+if ($_SESSION['rol'] !== 'estudiante') {
+    header("Location:../diseño/principal.php");
+    exit();
+ }
+
     $nombre=$_POST['pn'];
     $apellido=$_POST['pa'];
     $rude=$_POST['pr'];
@@ -27,8 +39,8 @@
     
     if ($conn->query($sql) === TRUE) {
         if($conn->query($sql2) === TRUE){
-echo"<script>alert('se registro correctamente')</ccript>";
-    header("location: ../usuarios/infouser.php?ci=$ci");
+echo"<script>alert('se edito correctamente')</ccript>";
+    header("location: ../usuarios/infouser.php");
         }else{ 
             echo"<script>alert('algo salio mal intentelo de nuevo')</script>";
         }

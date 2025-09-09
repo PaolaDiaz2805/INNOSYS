@@ -1,4 +1,48 @@
-<!DOCTYPE html>
+<?php
+$servername="localhost";
+    $username="root";
+    $contraseña="";
+    $dbname="proyecto";
+
+    $conn= new mysqli($servername, $username, $contraseña, $dbname);
+
+    if($conn->connect_error) {
+        echo "Ocurrio un error :( vuelve a intentarlo";
+    }
+  
+    session_start();
+
+if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
+    header("Location:../diseño/principal.php");
+    exit();
+}
+$ci = $_SESSION['ci'];
+  $rol=$_SESSION['rol'];
+    
+    $sql="SELECT * FROM informacion WHERE ci='$ci'";
+    $sql2="SELECT * FROM usuario WHERE id='$ci'";
+    $resultado = $conn->query($sql);
+    $resultado2 = $conn->query($sql2);
+
+    if($resultado->num_rows>0){
+       if($resultado2->num_rows>0){
+        while ( $fila2=$resultado2->fetch_assoc()){
+      $contraseña=$fila2['contraseña'];
+       }}
+       while($fila=$resultado->fetch_assoc()){
+            $nombre=$fila['nombre'];
+            $apellido=$fila['apellido'];
+            $curso=$fila['curso'];
+            $direccion=$fila['direccion'];
+            $fechadenacimiento=$fila['fechadenacimiento'];
+            $rude=$fila['rude'];
+            $telefono=$fila['telefono'];
+
+  
+    }
+    }
+    ?>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +50,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <title>Document</title>
-     <style>
-         body {
+    <style>    body {
             position: relative;
             margin: 0;
             height: 100%;
@@ -72,7 +115,7 @@
             color: rgba(28, 28, 70, 1);
         }
         input[type="submit"],
-        input[type="reset"] ,#x {
+        input[type="reset"] {
             width: 48%;
             background-color:rgba(28, 28, 70, 1);
             color: white;
@@ -83,7 +126,7 @@
         }
 
         input[type="submit"]:hover,
-        input[type="reset"]:hover ,#x{
+        input[type="reset"]:hover {
             transform: scale(1.05);
             opacity: 0.9;
         }
@@ -94,54 +137,43 @@
             margin-bottom: 10px;
             display: block;
         }
-        #x{
-          text-decoration:none;
-        }
+        
+        </style>
 
-    </style>
 </head>
 <body>
-   <center> <form action="regpromost.php" method="post" novalidate>
-    <h1>PROFESOR</h1>
-    <h2>Llena el formulario con tus datos</h2>
-    
-    <label for="rol">Rol</label><br>
-    <input type="text"value="profesor" name="rol" readonly><br>
-    
+    <center> <form action="editaradmin.php?id=$ci" method="post" novalidate>
+    <h1>ADMINISTRADOR</h1>
+    <h2>Edita:</h2>
+
     <label for="nom">Nombre</label><br>
-    <input type="text" name="pn" placeholder="Ej: Ximena" /><br>
-    
+    <input type="text" name="pn"  value=<?=$nombre?> ><br>
+
     <label for="ape">Apellidos</label><br>
-    <input type="text" name="pa" placeholder="Ej: Ugarte Gutierrez" /><br>
+    <input type="text" name="pa" value=<?=$apellido?> ><br>
 
-    <label for="ci">CI</label><br>
-    <input type="text" name="pci" placeholder="Ej: 1273567" /><br>
-
-    <input type="hidden" name="pc" value="todos">
-    <label for="rude">Rude</label>
-    <input type="text" name="pr" placeholder="1234567890">
+    <label for="Rd">Rude</label><br>
+    <input type="text" name="pr"  value=<?=$rude?> ><br>
 
     <label for="di">Dirección</label><br>
-    <input type="text" name="pd" placeholder="Ej: Av América c.Benjamín Guzmán" /><br>
+    <input type="text" name="pd" value=<?=$direccion?> ><br>
 
     <label for="fn">Fecha de nacimiento</label><br>
-    <input type="date" name="pf" placeholder="29/10/2007" /><br>
+    <input type="date" name="pf" value=<?=$fechadenacimiento?> ><br>
 
-    <label for="tel">Telefono</label>
-    <input type="text" name="pt" placeholder="71707827">
+    <label for="tel"> <table>Telefono</table></label><br>
+    <input type="text" name="pt" value=<?=$telefono?>/><br>
 
     <label for="co">Contraseña</label><br>
-    <input type="password" name="pco" placeholder="********" /><br>
+    <input type="password" name="pco"  value=<?=$contraseña?> ><br>
 
     <div class="form-buttons"><br>
-     <br> <input type="submit" value="Enviar" />
-      <input type="reset" value="Limpiar" />
-      <a id="x"href="../usuarios/logueo.php">iniciar sesion</a>
+     <br> <input type="submit" value="Corregir" >
+      <input type="reset" value="Limpiar" >
+      <input type="hidden" name="pci"value=<?=$ci?>>
     </div>
-
-
-</form></center>
-<script> 
+  </form></center>
+<script>
  $("form").validate({
     rules: {
         pn: {
@@ -151,11 +183,6 @@
         pa: {
           required: true,
           maxlength: 25
-        },
-        pci: {
-          required: true,
-          digits: true,
-          minlength:7
         },
         pr: {
           required: true
@@ -186,21 +213,36 @@
           required: "Este campo es obligatorio",
           maxlength: "Máximo 25 caracteres"
         },
-        pci:{
-          required: "Este campo es obligatorio",
-          digits: "Solo se permiten números"
-        },
-        pr,pd,pf,pt: {
+        pr:{
           required: "Este campo es obligatorio"
         },
-        pc:{
+        pd:{
+          required: "Este campo es obligatorio"
+        },
+        pf:{
+          required: "Este campo es obligatorio"
+        },
+        pt: {
+          required: "Este campo es obligatorio"
+        },
+        pd: {
+          required: "Este campo es obligatorio"
+        },
+        pf: {
+          required: "Este campo es obligatorio"
+        },
+        pt: {
+          required: "Este campo es obligatorio"
+        },
+        pco:{
           required: "Este campo es obligatorio",
           minlength: "Mínimo 6 caracteres",
           maxlength: "Máximo 10 caracteres"
         }
       }
 );
+  </script>
 
-</script>
 </body>
 </html>
+    

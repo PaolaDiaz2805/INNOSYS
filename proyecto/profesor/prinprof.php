@@ -1,3 +1,28 @@
+
+<?php
+$servername="localhost";
+    $username="root";
+    $contraseña="";
+    $dbname="proyecto";
+
+    $conn= new mysqli($servername, $username, $contraseña, $dbname);
+
+    if($conn->connect_error) {
+         echo"<script>alert('Ocurrio un error :( vuelve a intentarlo')</script>";
+    }
+    
+session_start();
+$ci=$_SESSION['ci'];
+$rol=$_SESSION['rol'];
+ if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
+    header("Location:../diseño/principal.php");
+    exit();
+ }
+if ($_SESSION['rol'] !== 'profesor') {
+    header("Location:../diseño/principal.php");
+    exit();
+ }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -310,7 +335,7 @@
     $("#esconder").click(function(){
         $("#ini, #clas, #aj, #pen").toggle();
     });
-$("#menu").click(function(){
+    $("#menu").click(function(){
   $("#op").toggle();
 });
     </script>

@@ -6,8 +6,8 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <title>Document</title>
-     <style>
-         body {
+    <style>
+        body {
             position: relative;
             margin: 0;
             height: 100%;
@@ -101,25 +101,26 @@
     </style>
 </head>
 <body>
-   <center> <form action="regpromost.php" method="post" novalidate>
-    <h1>PROFESOR</h1>
+    <center> <form action="regadminmost.php" method="post" novalidate>
+    <h1>ADMINISTRADOR</h1>
     <h2>Llena el formulario con tus datos</h2>
     
     <label for="rol">Rol</label><br>
-    <input type="text"value="profesor" name="rol" readonly><br>
+    <input type="text"value="administrador" name="rol" readonly><br>
     
     <label for="nom">Nombre</label><br>
     <input type="text" name="pn" placeholder="Ej: Ximena" /><br>
-    
+
     <label for="ape">Apellidos</label><br>
     <input type="text" name="pa" placeholder="Ej: Ugarte Gutierrez" /><br>
-
+    
     <label for="ci">CI</label><br>
     <input type="text" name="pci" placeholder="Ej: 1273567" /><br>
 
     <input type="hidden" name="pc" value="todos">
-    <label for="rude">Rude</label>
-    <input type="text" name="pr" placeholder="1234567890">
+
+    <label for="Rd">Rude</label><br>
+    <input type="text" name="pr" placeholder="Ej: 198827289" /><br>
 
     <label for="di">Dirección</label><br>
     <input type="text" name="pd" placeholder="Ej: Av América c.Benjamín Guzmán" /><br>
@@ -127,21 +128,20 @@
     <label for="fn">Fecha de nacimiento</label><br>
     <input type="date" name="pf" placeholder="29/10/2007" /><br>
 
-    <label for="tel">Telefono</label>
-    <input type="text" name="pt" placeholder="71707827">
+    <label for="tel"> <table>Telefono</table></label><br>
+    <input type="text" name="pt" placeholder="Ej: 64943243" /><br>
 
     <label for="co">Contraseña</label><br>
     <input type="password" name="pco" placeholder="********" /><br>
 
+
     <div class="form-buttons"><br>
      <br> <input type="submit" value="Enviar" />
       <input type="reset" value="Limpiar" />
-      <a id="x"href="../usuarios/logueo.php">iniciar sesion</a>
+      <a id="x" href="log.php">iniciar sesion</a>
     </div>
-
-
-</form></center>
-<script> 
+  </form></center>
+<script>
  $("form").validate({
     rules: {
         pn: {
@@ -175,7 +175,7 @@
           minlength: 6,
           maxlength: 10
           }
-        },
+        }
       },
       messages: {
         pn: {
@@ -190,17 +190,26 @@
           required: "Este campo es obligatorio",
           digits: "Solo se permiten números"
         },
-        pr,pd,pf,pt: {
+        pr:{
           required: "Este campo es obligatorio"
         },
-        pc:{
+        pd:{
+          required: "Este campo es obligatorio"
+        },
+        pf: {
+          required: "Este campo es obligatorio"
+        },
+        pt: {
+          required: "Este campo es obligatorio"
+        },
+        pco: {
           required: "Este campo es obligatorio",
           minlength: "Mínimo 6 caracteres",
           maxlength: "Máximo 10 caracteres"
         }
       }
 );
+  </script>
 
-</script>
 </body>
 </html>

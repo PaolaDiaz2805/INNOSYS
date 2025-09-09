@@ -1,3 +1,28 @@
+<?php
+$servername="localhost";
+    $username="root";
+    $contraseña="";
+    $dbname="proyecto";
+
+    $conn= new mysqli($servername, $username, $contraseña, $dbname);
+
+    if($conn->connect_error) {
+         echo"<script>alert('Ocurrio un error :( vuelve a intentarlo')</script>";
+    }
+    
+session_start();
+$ci=$_SESSION['ci'];
+$rol=$_SESSION['rol'];
+ if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
+    header("Location:../diseño/principal.php");
+    exit();
+ }
+if ($_SESSION['rol'] !== 'estudiante') {
+    header("Location:../diseño/principal.php");
+    exit();
+ }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,7 +38,7 @@
             grid-template-areas:
                 "header"
                 "content";
-            background-image: url("logo.png");
+            background-image: url("../diseño/logo.png");
             background-repeat: repeat;
             background-size: 50% 50%;
             background-attachment: fixed;
@@ -129,9 +154,9 @@
     </header>
 
     <nav>
-        <div class="materias"><button><a href="../diseño/tablon.html">MATEMÁTICAS</a></button></div>
-        <div class="materias"><button>ENGLISH</button></div>
-        <div class="materias"><button>MÚSICA</button></div>
+        <div class="materias"><button><a href="../diseño/tablon.php">MATEMÁTICAS</a></button></div>
+        <div class="materias"><button><a href="formeditest.php">EDITAR</a></button></div>
+        <div class="materias"><button><a href="../usuarios/infouser.php">MOSTRAR INFORMACION</a></button></div>
         <div class="materias"><button>LITERATURA</button></div>
         <div class="materias"><button>QUÍMICA</button></div>
         <div class="materias"><button>ARTES PLÁSTICAS</button></div>
@@ -143,6 +168,6 @@
         <div class="materias"><button>RELIGIÓN</button></div>
         <div class="materias"><button>CS. SOCIALES</button></div>
     </nav>
-
+    
 </body>
 </html>

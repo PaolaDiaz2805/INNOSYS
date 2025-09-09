@@ -10,11 +10,11 @@
         echo "Ocurrio un error :( vuelve a intentarlo";
     }
  $codigo=$_POST['c1'];
- $nombre=$_POST['c2'];
-$sql="UPDATE clase SET nombre='$nombre' WHERE codigo='$codigo'";
-if($conn->query($sql)===TRUE){
-    echo "Se edito correctamente";
-   header("Location: ../profesor/prinprof.php");
-}
-
+    $b="SELECT * FROM clase WHERE codigo='$codigo'";
+    $resultado= $conn->query($b);
+    if ($resultado->num_rows >0){
+        while($fila=$resultado->fetch_assoc()){
+        $nombre=$fila['nombre'];
+           }
+    }
 ?>
