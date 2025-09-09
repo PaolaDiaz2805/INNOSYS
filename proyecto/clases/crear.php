@@ -178,6 +178,7 @@
       <option value="sexto"> 6to B sec.</option>
     
     </select><br>
+    <label for="cod">CODIGO</label>
     <input type="text" name="p3" placeholder="xpxpx" /><br>
     <div class="form-buttons"><br>
      <br><input type="submit" value="Crear" />
