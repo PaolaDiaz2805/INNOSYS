@@ -19,7 +19,7 @@ $servername="localhost";
     </head>
     <body>
         <h2>CUENTAS:</h2>
-        <table>
+        <table border="1">
             <tr><th>C.I</th><th>Contraseña</th><th>Rol</th><th>Bloqueado</th><th>Acciones</th></tr>
             <?php
               
@@ -47,20 +47,11 @@ $servername="localhost";
                             <a href="../administrador/formeditadmin.php?ci=<?php echo $row['id'];?>">Editar datos a administrador</a>
                     </td>
             </tr>
-            <?
+            <?php
          }
-    
+    ?>
 
-   /* if($resultado->num_rows>0){
-        if($resultado2->num_rows>0){
-        while($fila=$resultado->fetch_assoc()){
-            echo $fila['contraseña']."<br>".$fila['rol'];
-            while($fila2=$resultado2->fetch_assoc())
-        echo"<br>". $fila2['nombre']."<br>".$fila2['apellido']."<br>".$fila2['ci']."<br>".$fila2['curso']."<br>".$fila2['direccion']."<br>".$fila2['fechadenacimiento']."<br>".$fila2['rude']."<br>".$fila2['telefono'];
-        echo "<a href='infouser.php?ci=$ci'><button>MOSTRAR</button></a>";
-    }}
-}*/
-            ?>
+
         </table>
     </body>
     </html>

@@ -136,7 +136,7 @@
     <div class="form-buttons"><br>
      <br> <input type="submit" value="Enviar" />
       <input type="reset" value="Limpiar" />
-      <a id="x"href="logpro.php">iniciar sesion</a>
+      <a id="x"href="../usuarios/logueo.php">iniciar sesion</a>
     </div>
 
 
