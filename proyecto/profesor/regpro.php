@@ -117,7 +117,7 @@
     <label for="ci">CI</label><br>
     <input type="text" name="pci" placeholder="Ej: 1273567" /><br>
 
-    <input type="hidden" name="pc" vañue="todos">
+    <input type="hidden" name="pc" value="todos">
     <label for="rude">Rude</label>
     <input type="text" name="pr" placeholder="1234567890">
 

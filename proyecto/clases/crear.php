@@ -48,7 +48,7 @@
         form:hover{
             transform: scale(1.04);
         }
-        input{
+        input,select{
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -161,11 +161,24 @@
     <h1>CREA TU CLASE</h1>
     <h2>Llena el formulario</h2>
     <label for="nom">NOMBRE</label><br>
-    <input type="text"  name="P1"  placeholder="Nombra a tu clase(obligatorio)" /><br>
-    <label for="au">CURSO</label><br>
-    <input type="text" name="P2" placeholder="6toA secundaria" /><br>
-    <label for="au">CODIGO</label><br>
-    <input type="text" name="P3" placeholder="xpxpx" /><br>
+    <input type="text"  name="p1"  placeholder="Nombra a tu clase(obligatorio)" /><br>
+    <label for="cur">CURSO</label><br>
+    <select name="p2" >
+      <option value="primero">1ro A sec.</option>
+      <option value="primero">1ro B sec.</option>
+      <option value="segundo">2do A sec.</option>
+      <option value="segundo"> 2do B sec. </option>
+      <option value="tercero"> 3ro A sec.</option>
+      <option value="tercero"> 3ro B sec.</option>
+      <option value="cuarto"> 4to A sec.</option>
+      <option value="cuarto"> 4to B sec.</option>
+      <option value="quinto"> 5to A sec.</option>
+      <option value="quinto"> 5to B sec.</option>
+      <option value="sexto"> 6to A sec.</option>
+      <option value="sexto"> 6to B sec.</option>
+    
+    </select><br>
+    <input type="text" name="p3" placeholder="xpxpx" /><br>
     <div class="form-buttons"><br>
      <br><input type="submit" value="Crear" />
          <input type="reset" value="Limpiar" />

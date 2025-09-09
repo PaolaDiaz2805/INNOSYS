@@ -10,7 +10,15 @@ $servername="localhost";
         echo "Ocurrio un error :( vuelve a intentarlo";
     }
   
-    $ci=$_GET['ci'];
+    session_start();
+
+if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
+    header("Location:../diseño/principal.php");
+    exit();
+}
+$ci = $_SESSION['ci'];
+  $rol=$_SESSION['rol'];
+    
     $sql="SELECT * FROM informacion WHERE ci='$ci'";
     $sql2="SELECT * FROM usuario WHERE id='$ci'";
     $resultado = $conn->query($sql);
@@ -135,7 +143,7 @@ $servername="localhost";
 </head>
 <body>
     <center> <form action="editarprof.php?id=$ci" method="post" novalidate>
-    <h1>ESTUDIANTE</h1>
+    <h1>PROFESOR</h1>
     <h2>Edita:</h2>
 
     <label for="nom">Nombre</label><br>

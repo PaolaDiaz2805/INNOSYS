@@ -7,7 +7,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <title>Document</title>
     <style>
-         body {
+        
+        body {
             position: relative;
             margin: 0;
             height: 100%;
@@ -47,7 +48,7 @@
         form:hover{
             transform: scale(1.04);
         }
-        input{
+        input,select{
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -66,6 +67,10 @@
             font-family: Arial, Helvetica, sans-serif;
             color: rgba(28, 28, 70, 1);
             font-size: 50px;
+        }
+        h2{
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgba(28, 28, 70, 1);
         }
         input[type="submit"],
         input[type="reset"] {
@@ -152,16 +157,28 @@
     </style>
 </head>
 <body>
-     <form action="editarclase.php" method="post" novalidate>
-    <h1>EDITA TU CLASE</h1>
+     <form action="crearmost.php" method="post" novalidate>
+    <h1>CREA TU CLASE</h1>
+    <h2>Llena el formulario</h2>
     <label for="nom">NOMBRE</label><br>
-    <input type="text"  name="p1" value=<?$nombre?> /><br>
-    <label for="mat">MATERIA</label><br>
-    <input type="text" name="p2" vale=<?$materia?> /><br>
-    <label for="au">AULA</label><br>
-    <input type="text"  name="p3" value=<?$aula?> /><br>
-    <label for="au">CODIGO</label><br>
-    <input type="text"  name="p4" value=<?$codigo?> /><br>
+    <input type="text"  name="p1" value=<?=$nombre?>   /><br>
+    <label for="cur">CURSO</label><br>
+    <select name="p2" value=<?=$curso?> >
+      <option value="primero">1ro A sec.</option>
+      <option value="primero">1ro B sec.</option>
+      <option value="segundo">2do A sec.</option>
+      <option value="segundo"> 2do B sec. </option>
+      <option value="tercero"> 3ro A sec.</option>
+      <option value="tercero"> 3ro B sec.</option>
+      <option value="cuarto"> 4to A sec.</option>
+      <option value="cuarto"> 4to B sec.</option>
+      <option value="quinto"> 5to A sec.</option>
+      <option value="quinto"> 5to B sec.</option>
+      <option value="sexto"> 6to A sec.</option>
+      <option value="sexto"> 6to B sec.</option>
+    
+    </select><br>
+    <input type="text" name="p3" value=<?=$codigo?>  /><br>
     <div class="form-buttons"><br>
      <br><input type="submit" value="Crear" />
          <input type="reset" value="Limpiar" />
@@ -221,4 +238,3 @@ $("#sal").on("click", function() {
 </script>
 </body>
 </html>
-</head>

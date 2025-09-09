@@ -1,4 +1,4 @@
-    <?php 
+<?php 
     $servername="localhost";
     $username="root";
     $contraseña="";
@@ -12,30 +12,32 @@
     $rol=$_POST['rol'];
     $nombre=$_POST['pn'];
     $apellido=$_POST['pa'];
+    $rude=$_POST['pr'];
     $ci=$_POST['pci']; 
     $curso=$_POST['pc'];
+    $telefono=$_POST['pt'];
+    $contraseña=$_POST['pco'];
     $direccion=$_POST['pd']; 
     $fechadenacimiento=$_POST['pf']; 
-    $rude=$_POST['pr'];
-    $telefono=$_POST ['pt'];
-    $contraseña=$_POST['pco'];
     
     $sql="INSERT INTO usuario (id, contraseña, rol) VALUES('$ci','$contraseña','$rol')";
     $sql2="INSERT INTO informacion(ci, nombre, apellido, direccion, fechadenacimiento, telefono,curso, rude, usuario_id) VALUES ('$ci','$nombre','$apellido','$direccion','$fechadenacimiento','$telefono','$curso','$rude','$ci')";
-    $sql3="SELECT * FROM informacion WHERE ci=$ci";
-    $resultado= $conn->query($sql3);
-    $fila= $resultado->fetch_assoc();
-    if($ci==$fila['ci']){
-        echo "este usuario ya existe"; 
-    }
+    $sql3="SELECT * FROM informacion WHERE ci='$ci'";
+
+   $resultado3= $conn->query($sql3);
+   $fila3= $resultado3->fetch_assoc();
+  if ($resultado3 && $resultado3->num_rows > 0) {
+    echo "Este usuario ya existe";
+    header("Location: ../diseño/principal.php");
+    exit();
+}
+   
     if ($conn->query($sql) === TRUE) {
-    echo "Nuevo registro creado exitosamente";
-    }
-    if ($conn->query($sql2) === TRUE) {
+     echo "Nuevo registro creado exitosamente";
+    } 
+
+     if ($conn->query($sql2) === TRUE) {
         header("Location: ../usuarios/logueo.php");
     } 
-    $conn->close();
-   
-
-
+    die();
 ?>

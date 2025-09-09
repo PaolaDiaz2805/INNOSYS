@@ -1,4 +1,48 @@
-<!DOCTYPE html>
+<?php
+$servername="localhost";
+    $username="root";
+    $contraseña="";
+    $dbname="proyecto";
+
+    $conn= new mysqli($servername, $username, $contraseña, $dbname);
+
+    if($conn->connect_error) {
+        echo "Ocurrio un error :( vuelve a intentarlo";
+    }
+  
+    session_start();
+
+if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
+    header("Location:../diseño/principal.php");
+    exit();
+}
+$ci = $_SESSION['ci'];
+  $rol=$_SESSION['rol'];
+    
+    $sql="SELECT * FROM informacion WHERE ci='$ci'";
+    $sql2="SELECT * FROM usuario WHERE id='$ci'";
+    $resultado = $conn->query($sql);
+    $resultado2 = $conn->query($sql2);
+
+    if($resultado->num_rows>0){
+       if($resultado2->num_rows>0){
+        while ( $fila2=$resultado2->fetch_assoc()){
+      $contraseña=$fila2['contraseña'];
+       }}
+       while($fila=$resultado->fetch_assoc()){
+            $nombre=$fila['nombre'];
+            $apellido=$fila['apellido'];
+            $curso=$fila['curso'];
+            $direccion=$fila['direccion'];
+            $fechadenacimiento=$fila['fechadenacimiento'];
+            $rude=$fila['rude'];
+            $telefono=$fila['telefono'];
+
+  
+    }
+    }
+    ?>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +50,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <title>Document</title>
-    <style>
-        body {
+    <style>    body {
             position: relative;
             margin: 0;
             height: 100%;
@@ -72,7 +115,7 @@
             color: rgba(28, 28, 70, 1);
         }
         input[type="submit"],
-        input[type="reset"] ,#x {
+        input[type="reset"] {
             width: 48%;
             background-color:rgba(28, 28, 70, 1);
             color: white;
@@ -83,7 +126,7 @@
         }
 
         input[type="submit"]:hover,
-        input[type="reset"]:hover ,#x{
+        input[type="reset"]:hover {
             transform: scale(1.05);
             opacity: 0.9;
         }
@@ -94,67 +137,40 @@
             margin-bottom: 10px;
             display: block;
         }
-        #x{
-          text-decoration:none;
-        }
+        
+        </style>
 
-    </style>
 </head>
 <body>
-    <center> <form action="regestmost.php" method="post" novalidate>
-    <h1>ESTUDIANTE</h1>
-    <h2>Llena el formulario con tus datos</h2>
-    
-    <label for="rol">Rol</label><br>
-    <input type="text"value="estudiante" name="rol" readonly><br>
-    
+    <center> <form action="editaradmin.php?id=$ci" method="post" novalidate>
+    <h1>ADMINISTRADOR</h1>
+    <h2>Edita:</h2>
+
     <label for="nom">Nombre</label><br>
-    <input type="text" name="pn" placeholder="Ej: Ximena" /><br>
+    <input type="text" name="pn"  value=<?=$nombre?> ><br>
 
     <label for="ape">Apellidos</label><br>
-    <input type="text" name="pa" placeholder="Ej: Ugarte Gutierrez" /><br>
-    
-    <label for="ci">CI</label><br>
-    <input type="text" name="pci" placeholder="Ej: 1273567" /><br>
-
-    <label for="cur">Curso</label><br>
-    <select name="pcu" id="p">
-      <option value="primero">1ro A sec.</option>
-      <option value="primero">1ro B sec.</option>
-      <option value="segundo">2do A sec.</option>
-      <option value="segundo"> 2do B sec. </option>
-      <option value="tercero"> 3ro A sec.</option>
-      <option value="tercero"> 3ro B sec.</option>
-      <option value="cuarto"> 4to A sec.</option>
-      <option value="cuarto"> 4to B sec.</option>
-      <option value="quinto"> 5to A sec.</option>
-      <option value="quinto"> 5to B sec.</option>
-      <option value="sexto"> 6to A sec.</option>
-      <option value="sexto"> 6to B sec.</option>
-    
-    </select>
-    <br>
+    <input type="text" name="pa" value=<?=$apellido?> ><br>
 
     <label for="Rd">Rude</label><br>
-    <input type="text" name="pr" placeholder="Ej: 198827289" /><br>
+    <input type="text" name="pr"  value=<?=$rude?> ><br>
 
     <label for="di">Dirección</label><br>
-    <input type="text" name="pd" placeholder="Ej: Av América c.Benjamín Guzmán" /><br>
+    <input type="text" name="pd" value=<?=$direccion?> ><br>
 
     <label for="fn">Fecha de nacimiento</label><br>
-    <input type="date" name="pf" placeholder="29/10/2007" /><br>
+    <input type="date" name="pf" value=<?=$fechadenacimiento?> ><br>
 
     <label for="tel"> <table>Telefono</table></label><br>
-    <input type="text" name="pt" placeholder="Ej: 64943243" /><br>
+    <input type="text" name="pt" value=<?=$telefono?>/><br>
 
     <label for="co">Contraseña</label><br>
-    <input type="password" name="pco" placeholder="********" /><br>
-
+    <input type="password" name="pco"  value=<?=$contraseña?> ><br>
 
     <div class="form-buttons"><br>
-     <br> <input type="submit" value="Enviar" />
-      <input type="reset" value="Limpiar" />
-      <a id="x" href="log.php">iniciar sesion</a>
+     <br> <input type="submit" value="Corregir" >
+      <input type="reset" value="Limpiar" >
+      <input type="hidden" name="pci"value=<?=$ci?>>
     </div>
   </form></center>
 <script>
@@ -167,14 +183,6 @@
         pa: {
           required: true,
           maxlength: 25
-        },
-        pci: {
-          required: true,
-          digits: true,
-          minlength:7
-        },
-        pc: {
-          required: true
         },
         pr: {
           required: true
@@ -194,7 +202,7 @@
           minlength: 6,
           maxlength: 10
           }
-        }
+        },
       },
       messages: {
         pn: {
@@ -205,17 +213,19 @@
           required: "Este campo es obligatorio",
           maxlength: "Máximo 25 caracteres"
         },
-        pci:{
-          required: "Este campo es obligatorio",
-          digits: "Solo se permiten números"
-        }, 
-        pc: {
-          required: "Este campo es obligatorio"
-        },
         pr:{
           required: "Este campo es obligatorio"
         },
         pd:{
+          required: "Este campo es obligatorio"
+        },
+        pf:{
+          required: "Este campo es obligatorio"
+        },
+        pt: {
+          required: "Este campo es obligatorio"
+        },
+        pd: {
           required: "Este campo es obligatorio"
         },
         pf: {
@@ -224,7 +234,7 @@
         pt: {
           required: "Este campo es obligatorio"
         },
-        pco: {
+        pco:{
           required: "Este campo es obligatorio",
           minlength: "Mínimo 6 caracteres",
           maxlength: "Máximo 10 caracteres"
@@ -235,3 +245,4 @@
 
 </body>
 </html>
+    

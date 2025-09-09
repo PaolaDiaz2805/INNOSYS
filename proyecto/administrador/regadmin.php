@@ -101,12 +101,12 @@
     </style>
 </head>
 <body>
-    <center> <form action="regestmost.php" method="post" novalidate>
-    <h1>ESTUDIANTE</h1>
+    <center> <form action="regadminmost.php" method="post" novalidate>
+    <h1>ADMINISTRADOR</h1>
     <h2>Llena el formulario con tus datos</h2>
     
     <label for="rol">Rol</label><br>
-    <input type="text"value="estudiante" name="rol" readonly><br>
+    <input type="text"value="administrador" name="rol" readonly><br>
     
     <label for="nom">Nombre</label><br>
     <input type="text" name="pn" placeholder="Ej: Ximena" /><br>
@@ -117,23 +117,7 @@
     <label for="ci">CI</label><br>
     <input type="text" name="pci" placeholder="Ej: 1273567" /><br>
 
-    <label for="cur">Curso</label><br>
-    <select name="pcu" id="p">
-      <option value="primero">1ro A sec.</option>
-      <option value="primero">1ro B sec.</option>
-      <option value="segundo">2do A sec.</option>
-      <option value="segundo"> 2do B sec. </option>
-      <option value="tercero"> 3ro A sec.</option>
-      <option value="tercero"> 3ro B sec.</option>
-      <option value="cuarto"> 4to A sec.</option>
-      <option value="cuarto"> 4to B sec.</option>
-      <option value="quinto"> 5to A sec.</option>
-      <option value="quinto"> 5to B sec.</option>
-      <option value="sexto"> 6to A sec.</option>
-      <option value="sexto"> 6to B sec.</option>
-    
-    </select>
-    <br>
+    <input type="hidden" name="pc" value="todos">
 
     <label for="Rd">Rude</label><br>
     <input type="text" name="pr" placeholder="Ej: 198827289" /><br>
@@ -173,9 +157,6 @@
           digits: true,
           minlength:7
         },
-        pc: {
-          required: true
-        },
         pr: {
           required: true
         },
@@ -208,9 +189,6 @@
         pci:{
           required: "Este campo es obligatorio",
           digits: "Solo se permiten números"
-        }, 
-        pc: {
-          required: "Este campo es obligatorio"
         },
         pr:{
           required: "Este campo es obligatorio"
