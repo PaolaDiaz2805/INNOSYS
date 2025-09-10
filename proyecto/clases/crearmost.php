@@ -10,8 +10,8 @@
     if($conn->connect_error) {
         echo "Ocurrio un error :( vuelve a intentarlo";
     }
-    session_star();
-    $ci=$_SESSION['ci']
+    session_start();
+    $ci=$_SESSION['ci'];
 
     $nombre=$_POST['p1'];
     $curso=$_POST['p2'];
