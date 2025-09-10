@@ -10,26 +10,26 @@
        echo "Ocurrio un error :( vuelve a intentarlo";
     }
     session_start();
-$ci=$_SESSION['ci'];
-$rol=$_SESSION['rol'];
+$ci=$_SESSION['id']??'';
+$rol=$_SESSION['rol']??'';
 
- if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
+ if (empty($_SESSION['id'])) {
     header("Location:../diseño/principal.php");
     exit();
  }
-if ($_SESSION['rol'] !== 'estudiante') {
+if ($_SESSION['rol'] == 'estudiante') {
     header("Location:../diseño/principal.php");
     exit();
  }
 
-    $nombre=$_POST['pn'];
-    $apellido=$_POST['pa'];
-    $rude=$_POST['pr'];
-    $telefono=$_POST['pt'];
-    $curso=$_POST['pcu'];
-    $contraseña=$_POST['pco'];
-    $direccion=$_POST['pd']; 
-    $fechadenacimiento=$_POST['pf']; 
+    $nombre=$_POST['pn']??'';
+    $apellido=$_POST['pa']??'';
+    $rude=$_POST['pr']??'';
+    $telefono=$_POST['pt']??'';
+    $curso=$_POST['pcu']??'';
+    $contraseña=$_POST['pco']??'';
+    $direccion=$_POST['pd']??''; 
+    $fechadenacimiento=$_POST['pf']??''; 
     
     $sql="UPDATE usuario SET contraseña='$contraseña' WHERE id='$ci'";
     $sql2="UPDATE informacion SET ci='$ci', nombre='$nombre', apellido='$apellido', direccion='$direccion', fechadenacimiento='$fechadenacimiento', telefono='$telefono', curso='$curso', rude='$rude' WHERE ci='$ci'";

@@ -12,11 +12,11 @@
         session_start();
 $ci=$_SESSION['ci'];
 $rol=$_SESSION['rol'];
- if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
+ if (empty($_SESSION['ci'])) {
     header("Location:../diseño/principal.php");
     exit();
  }
-if ($_SESSION['rol'] !== 'estudiante') {
+if ($_SESSION['rol'] == 'estudiante') {
     header("Location:../diseño/principal.php");
     exit();
  }

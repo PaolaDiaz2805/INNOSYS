@@ -22,6 +22,7 @@ if ($_SESSION['rol'] !== 'profesor') {
     header("Location:../diseño/principal.php");
     exit();
  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

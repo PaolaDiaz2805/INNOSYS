@@ -13,11 +13,11 @@
 $ci=$_SESSION['ci'];
 $rol=$_SESSION['rol'];
 
- if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
+ if ($_SESSION['ci']) {
     header("Location:../diseño/principal.php");
     exit();
  }
-if ($_SESSION['rol'] !== 'administrador') {
+if ($_SESSION['rol'] == 'administrador') {
     header("Location:../diseño/principal.php");
     exit();
  }

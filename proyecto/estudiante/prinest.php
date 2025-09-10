@@ -10,6 +10,7 @@ $servername="localhost";
          echo"<script>alert('Ocurrio un error :( vuelve a intentarlo')</script>";
     }
     
+
 session_start();
 $ci=$_SESSION['ci'];
 $rol=$_SESSION['rol'];
@@ -21,6 +22,7 @@ if ($_SESSION['rol'] !== 'estudiante') {
     header("Location:../diseño/principal.php");
     exit();
  }
+ include("../administrador/validarbloqueo.php");
 ?>
 
 <!DOCTYPE html>

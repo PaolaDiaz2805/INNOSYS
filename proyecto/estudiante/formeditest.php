@@ -11,12 +11,7 @@ $servername="localhost";
     }
     
 session_start();
-
-if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
-    header("Location:../diseño/principal.php");
-    exit();
-}
-$ci = $_SESSION['ci'];
+   $ci = $_SESSION['ci'];
   $rol=$_SESSION['rol'];
     
     $sql="SELECT * FROM informacion WHERE ci='$ci'";
