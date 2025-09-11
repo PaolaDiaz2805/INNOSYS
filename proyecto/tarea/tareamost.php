@@ -9,6 +9,7 @@ $servername="localhost";
     if($conn->connect_error) {
         echo "Ocurrio un error :( vuelve a intentarlo";
     }
+    sesion_start();
     $titulo=$_POST['tt'];
     $descripcion=$_POST['in'];
     $tema=$_POST['tem'];
@@ -19,4 +20,5 @@ if ($conn->query($sql) === TRUE) {
     }else{
         echo "error";
     }
+    
 ?>
