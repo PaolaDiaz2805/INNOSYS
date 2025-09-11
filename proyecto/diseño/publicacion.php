@@ -10,10 +10,10 @@
         echo "Ocurrio un error :( vuelve a intentarlo";
     }
 
-    $nombre=$_POST['nombre'];
-    $fecha=$_POST['fecha'];
-    $mensaje=$_POST['mensaje'];
-    $ci=$_POST['ci'];
+    $nombre=$_GET['nombre'];
+    $fecha=$_GET['fecha'];
+    $mensaje=$_GET['mensaje'];
+    $ci=$_GET['ci'];
     
     $sql="INSERT INTO comentarios(cuenta, fechaC, publicacion) VALUES ('$nombre','$fecha','$mensaje')";
     $sql2="SELECT * FROM usuario WHERE id=$ci";
@@ -23,11 +23,6 @@
         echo $mensaje;
     }else{
         echo "error";
-    }
-    if($ci==$fila['id']){
-       echo $fila['rol'];
-    }else{
-        echo"No existe este usuario";
     }
     
    

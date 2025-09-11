@@ -171,7 +171,7 @@
     <div class="content">
   <div class="card">
     <h3>✏️ Nueva publicación</h3>
-    <form action="publicacion.php" method="post">
+    <form action="publicacion.php" method="get">
       
       <label for="ci">CI:</label>
       <input type="text" name="ci">
