@@ -15,10 +15,16 @@ $servername="localhost";
     $tema=$_POST['tem'];
     $nota=$_POST['pun'];
     $sql="INSERT INTO tarea (titulo, descripcion, tema, nota, clase_idclase) VALUES('$titulo','$descripcion','$tema','$nota', '3')";
-if ($conn->query($sql) === TRUE) {
+    if ($conn->query($sql) === TRUE) {
+    $resultado=$conn->query($sql);
+    $fila=$resultado->fetch_assoc();
+    $_SESSION['tit']=$fila['titulo'];
+    $_SESSION['des']=$fila['descripcion'];
+    $_SESSION['tem']=$fila['tema'];
+    $_SESSION['not']=$fila['nota'];
     echo "Se subio la tarea exitosamente";
     }else{
         echo "error";
     }
-    
+
 ?>
