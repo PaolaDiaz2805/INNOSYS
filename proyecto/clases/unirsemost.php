@@ -11,10 +11,12 @@ $servername="localhost";
     }
 
     session_start();
+    $ci=$_SESSION['ci'];
+
     $codigo=$_POST['u1'];
 
-     $d="SELECT * FROM clase WHERE codigo='$codigo'";
-    $resultado= $conn->query($d);
+     $sql="SELECT * FROM clase WHERE codigo='$codigo'";
+    $resultado= $conn->query($sql);
     if ($resultado->num_rows >0){
         $fila= $resultado->fetch_assoc();
     }

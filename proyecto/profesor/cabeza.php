@@ -42,7 +42,7 @@
 <body>
      <header class="header">
     <img class="im" src="logo.png">
-    <a href="principal.php"><h1 id="pp">LA SALLE DE CONVENIO</h1></a>
+    <a href="../diseño/principal.php"><h1 id="pp">LA SALLE DE CONVENIO</h1></a>
     
     <img class="im" src="logo.png">
 </header>

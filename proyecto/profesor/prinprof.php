@@ -1,149 +1,153 @@
+<?php 
+session_start();
+$servername="localhost";
+$username="root";
+$contraseña="";
+$dbname="proyecto";
+
+$conn= new mysqli($servername, $username, $contraseña, $dbname);
+
+if($conn->connect_error) {
+    echo "<script>alert('Ocurrio un error :( vuelve a intentarlo')</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        h1{
-          font-family: 'oswald', sans-serif;
-          font-weight: 700;
-          font-size: 2em;
-          color: #062870;
-          text-transform: uppercase;
-        }
-        .main,section,aside{
-            width: 95%;
-            gap: 20px;
-        }
-        .der{
-            grid-area: be;
-        }
-        body{
-          background-color: rgb(231, 231, 231);
-           display: grid;
-           grid-template-columns: 15% 85%;
-           grid-template-rows: 150px 200px 200px 200px 200px;
-           grid-template-areas: 
-           "be be "
-           "na hea"
-           "na yy"
-           "na mai"
-           "na asi";
-           gap: 10px;
-          background-image: url('logo.png');
-          background-repeat: repeat;
-          background-size: 50% 50%; 
-          background-attachment: fixed;
-          position: relative;
-        }
-        body::before {
-         content: "";
-         position: absolute;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         background-color: rgba(255, 255, 255, 0.7); 
-         z-index: -1;
-        }
-   @media (max-width: 1024px) {
-    body {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clases</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+h2{
+    font-family: 'oswald', sans-serif;
+    font-weight: 700;
+    font-size: 2em;
+    color: #062870;
+    text-transform: uppercase;
+}
+header{
+    width:100%;
+    grid-area: cabeza;
+}
+.menu{ 
+    width:100%;
+    grid-area: men;
+}
+.espacio{
+    grid-area: esp;
+}
+.cajas{
+    background-color: rgb(255, 255, 255);
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 3px double rgba(6, 32, 150, 1);
+    opacity: 0.95;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    grid-area:cajitas;
+}
+.clases{
+    background-color: #005187;
+    height: 100px;
+    width: 300px;
+    font-family:'Trebuchet MS', Arial, sans-serif;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    
+ 
+}
+
+body{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(231, 231, 231);
+    background-image: url('logo.png');
+    background-repeat: repeat;
+    background-size: 50% 50%;
+    background-attachment: fixed;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 150px 300px 700px;
+    grid-template-areas:
+        "cabeza cabeza"
+        "men esp"
+        "cajitas cajitas";
+}
+body::before {
+    content: "";
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background-color: rgba(255,255,255,0.7);
+    z-index: -1;
+}
+@media (max-width: 768px){
+    body{
         grid-template-columns: 100%;
-        grid-template-rows: auto auto auto auto auto;
+        grid-template-rows: 150px 100px auto;
         grid-template-areas:
-            "na"
-            "hea"
-            "mai"
-            "sec"
-            "asi";
+            "cabeza"
+            "menu"
+            "cajitas";
         gap: 10px;
     }
-    header, main, section, aside {
+    .cajas{
+        width: 95%;
         flex-direction: column;
         align-items: center;
-        gap: 10px;
     }
-    div {
+    .clases{
         width: 90%;
-        padding: 20px;
-        margin: auto;
-    }
-
-    button {
-        width: 100%;
-        font-size: 18px;
-        padding: 15px;
     }
 }
-@media (max-width: 600px) {
-    body {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding: 10px;
-    }
-
-    header, main, section, aside {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-
-    div {
-        width: 100%;
-        padding: 15px;
-        margin: auto;
-    }
-    button {
-        width: 100%;
-        font-size: 16px;
-        padding: 12px;
-    }
-}
-        div{
-            background-color:rgb(255, 255, 255 ) ;
-            width: 100%;
-            text-align: center;
-            border-radius: 5%;
-            border: 5px solid ;
-            border-color: rgba(6, 32, 150, 1);
-            border-style: double;
-            padding: 70px;
-            box-sizing: border-box;
-            margin: auto;
-            opacity: 82%;
-        }
-        button{
-            background-color: #005187;
-            height:70px;
-            width: 100%;
-            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            max-width: 400px;
-            font-size: 18px;
-            padding: 15px;
-            box-sizing: border-box;
-        }
-        button:hover{
-            background-color:  #005187;
-            transform: scale(1.1);
-            box-shadow: 0 0 5px rgb(255, 255, 255),
-              0 0 25px rgb(255, 255, 255),
-              0 0 100px rgb(24, 22, 132);
-        }
-    </style>
+</style>
 </head>
 <body>
-    <header class="der">
-        <?php include("cabeza.php"); ?>
-    </header>
+<header>
+<?php include("cabeza.php"); ?>
+</header>
+<nav class="menu">
+<?php include("menu.php"); ?>
+</nav>
+<nav class="espacio"></nav>
+<aside class="cajas">
 
-    <?php include("menu.php"); ?>
-
+<?php
+$ci=$_SESSION['ci'];
+$sql = "SELECT * FROM clase WHERE usuario_id=$ci";
+$resultado = $conn->query($sql);  
+if ($resultado->num_rows > 0) {
+    while($clase = $resultado->fetch_assoc()){
+        $nombre = $clase['nombre'];
+        $idclase = $clase['idclase'];
+?>
+<section class="clases">
+<a href="tablon.php?id=<?= $idclase ?>" style="color:white; text-decoration:none;">
+<h2><?= $nombre ?></h2>
+</a>
+</section>
+<?php
+    }
+}
+?>
+</aside>
+<menu></menu>
 </body>
 </html>
