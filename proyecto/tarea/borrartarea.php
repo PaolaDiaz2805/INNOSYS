@@ -1,5 +1,5 @@
-<?php 
-    $servername="localhost";
+<?php
+$servername="localhost";
     $username="root";
     $contraseña="";
     $dbname="proyecto";
@@ -9,21 +9,15 @@
     if($conn->connect_error) {
        echo "Ocurrio un error :( vuelve a intentarlo";
     }
-     session_start();
+    session_start();
     $id=$_SESSION['id']??'';
-
-
-    $titulo=$_POST['titu']??'';
-    $descripcion=$_POST['desc']??'';
-    $tema=$_POST['tem']??'';
-    $nota=$_POST['not']??'';
     
-    $sql="UPDATE tarea SET titulo='$titulo', descripcion='$descripcion', tema='$tema', nota='$nota' WHERE idtarea='$id'";
+    $sql="DELETE FROM tarea WHERE idtarea='$id'";
     $resultado= $conn->query($sql);
     
     if ($conn->query($sql) === TRUE) {
         if($conn->query($sql) === TRUE){
-echo"<script>alert('se edito correctamente')</script>";
+echo"<script>alert('Se borro correctamente')</script>";
    
         }else{ 
             echo"<script>alert('algo salio mal intentelo de nuevo')</script>";
@@ -31,4 +25,6 @@ echo"<script>alert('se edito correctamente')</script>";
      
     } 
     $conn->close();
+
+
 ?>
