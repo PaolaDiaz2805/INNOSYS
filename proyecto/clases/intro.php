@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,7 +30,7 @@
       border: 2px solid rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(6px);
       animation: slideUp 1s ease-out;
-      position: relative; /* Para posicionar logos */
+      position: relative; 
     }
 
     @keyframes slideUp {
@@ -39,19 +40,12 @@
 
     /* Logos */
     .logo-top {
-      position: absolute;
+      position:center;
       top: 20px;
-      left: 20px;
-      width: 80px;
-      animation: float 1.5s ease-in-out infinite;
-    }
-
-    .logo-bottom {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      width: 80px;
-      animation: float 1.5s ease-in-out infinite;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      animation: float 1s ease-in-out infinite;
     }
 
     @keyframes float {
@@ -115,15 +109,13 @@
 </head>
 <body>
   <div class="contenedor">
-    <img src="logo.png" alt="Logo Superior" class="logo-top">
+    <img src="../diseño/logo.png" alt="Logo Superior" class="logo-top">
     <h1>ERES UN:</h1>
     <div class="botones">
       <a href="" class="boton" id="b3">ADMINISTRADOR</a>
       <a href="../profesor/regpro.php" class="boton" id="b1">PROFESOR</a>
       <a href="../estudiante/regest.php" class="boton" id="b2">ESTUDIANTE</a>
     </div>
-    <img src="logo.png" alt="Logo Inferior" class="logo-bottom">
   </div>
 </body>
 </html>
-

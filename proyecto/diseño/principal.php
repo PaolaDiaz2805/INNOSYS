@@ -343,7 +343,7 @@
     </p>
   </aside>
   
-  <div class="text2"><a href="../clases/intro.php">Estudiantes o profesor </a> </div>
+  <div class="text2"><a href="../clases/intro.php">Estudiantes o Profesor o Administrador  </a> </div>
 
   <aside class="text3">
     Últimas noticias
