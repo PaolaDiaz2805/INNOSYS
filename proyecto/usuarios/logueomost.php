@@ -40,7 +40,7 @@ $servername="localhost";
                         header("location: ../profesor/prinprof.php".$conn->insert_ci);
                     }
                     if($_SESSION['rol']==="administrador"){
-                        header("location: ../administrador/prinadmin.php".$conn->insert_ci);
+                        header("location: ../administrador/prinadm.php".$conn->insert_ci);
                     }else{
                          echo"<script>alert('NO HAY ROL')</script>";
                     }
