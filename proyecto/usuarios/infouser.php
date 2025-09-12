@@ -212,8 +212,6 @@ $rol=$_SESSION['rol'];
                     }
                     if($_SESSION['rol']=="administrador"){
                        echo "<a href='../administrador/formeditprof.php?ci=$ci?rol='$rol><button>EDITAR</button></a><br>";
-                    }else{
-                         echo"<script>alert('NO HAY ROL')</script>";
                     }
      } }?>
     </div>
