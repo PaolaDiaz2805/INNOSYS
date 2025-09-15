@@ -98,25 +98,7 @@ body::before {
     background-color: rgba(255,255,255,0.7);
     z-index: -1;
 }
-@media (max-width: 768px){
-    body{
-        grid-template-columns: 100%;
-        grid-template-rows: 150px 100px auto;
-        grid-template-areas:
-            "cabeza"
-            "menu"
-            "cajitas";
-        gap: 10px;
-    }
-    .cajas{
-        width: 95%;
-        flex-direction: column;
-        align-items: center;
-    }
-    .clases{
-        width: 90%;
-    }
-}
+
 </style>
 </head>
 <body>
