@@ -183,7 +183,7 @@ $rol=$_SESSION['rol'];
 
  ?>
     <div class="header">
-      <h1>Perfil Usuario - <?php echo $row2['nombre']?><?php echo $row2['apellido']?></h1>
+      <h1>Perfil Usuario - <?php echo $row2['nombre']?>  <?php echo $row2['apellido']?></h1>
     </div>
     <div class="profile">
       <div class="profile-info">
@@ -196,7 +196,6 @@ $rol=$_SESSION['rol'];
     <div class="section">
       <h3>Datos básicos</h3>
       <table>
-        <tr><td>Tipo de usuario</td><td>Con acceso</td></tr>
         <tr><td>Usuario</td><td><?php echo $row['rol'];?></td></tr>
         <tr><td>RUDE</td><td><?php echo $row2['rude'];?></td></tr>
         <tr><td>Identificación (CI)</td><td><?php echo $row2['ci'];?></td></tr>

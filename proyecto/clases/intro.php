@@ -112,7 +112,7 @@
     <img src="../diseño/logo.png" alt="Logo Superior" class="logo-top">
     <h1>ERES UN:</h1>
     <div class="botones">
-      <a href="" class="boton" id="b3">ADMINISTRADOR</a>
+      <a href="../administrador/regadmin.php" class="boton" id="b3">ADMINISTRADOR</a>
       <a href="../profesor/regpro.php" class="boton" id="b1">PROFESOR</a>
       <a href="../estudiante/regest.php" class="boton" id="b2">ESTUDIANTE</a>
     </div>
