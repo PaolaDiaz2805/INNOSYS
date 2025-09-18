@@ -20,6 +20,7 @@
      gap: 10px;
       font-family: Arial, sans-serif;
       background-color: white;
+
     }
 
     .der{
@@ -34,7 +35,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background-color: #004c99; 
+      background-color: #115196e3; 
       padding: 20px;
       font-size: 1em;
     }
@@ -44,15 +45,16 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background-color: #004c99; 
-      color: white;
+      background-color: #115196e3; 
+      color: #e6e5e5ff;
       padding: 20px;
     }
 
     aside h3 {
       margin-top: 0;
-      color: red;
+      color:  #061f38ff;
       border-bottom: 1px solid white;
+      font-weight: bold;
     }
 
     aside p {
@@ -129,8 +131,14 @@
       <p>Facebook: La Salle</p>
 
       <h3>Horario</h3>
-      <p>Lunes a Viernes
-      <br>7:00am </p>
+      <p>Lunes ㅤㅤㅤ  ㅤ07:00 - 16:00<br>
+         Martesㅤㅤㅤㅤ 07:00 - 16:00<br>
+         Miércolesㅤㅤㅤ07:00 - 16:00<br>
+         Jueves ㅤ ㅤ ㅤ 07:00 - 16:00 <br>        
+         Viernesㅤㅤㅤㅤ07:00 - 16:00 <br>
+         Sábadoㅤ ㅤ ㅤ Cerrado <br> 
+         Domingoㅤㅤㅤ Cerrado <br>
+          </p>
     </div>
 
    

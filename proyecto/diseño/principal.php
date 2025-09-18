@@ -26,7 +26,7 @@
     body {
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 100px 40px 600px 100px 400px 70px 250px 350px 350px 100px;
+  grid-template-rows: 100px 40px 600px 100px 400px 70px 250px 350px 450px 100px;
   grid-template-areas:
     "uno uno"
     "dos dos"
@@ -42,6 +42,7 @@
   font-family: Arial, sans-serif;
   animation: fadeIn 1s ease-in;
   gap:10px;
+
     }
 
   .ea {
@@ -100,29 +101,41 @@
       animation: fadeIn 2s ease;
     }
 
-    .cajas {
-      grid-area: cuatro;
-      background-color: white;
-      display: flex;
-      justify-content: space-between;
-      text-align: center;
-      font-size: 15px;
-    }
+.cajas {
+  grid-area: cuatro;
+  background-color: #f5f5f5;
+  display: flex;
+  text-align: center;
+  gap: 5px;
+  width: 100%;        /* que ocupe todo el ancho posible */
+  padding: 0 10px;    /* opcional, para no pegar a los bordes de la ventana */
+  box-sizing: border-box;
+}
 
-    .a, .r {
-      width: 15%;
-      padding: 30px;
-      color: white;
-      font-weight: bold;
-      transition: transform 0.3s ease;
-    }
+.a, .r {
+  flex-grow: 1;
+  background-color: #002a61;
+  border-radius: 15px;
+  transition: all 0.4s ease;
+  padding: 15px 0;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
     .a {
-      background-color: rgb(31, 20, 112);
+      background-color:  #002a61;
     }
-
+ .a:hover, .r:hover {
+      background-color: #004ea6;
+      transform: scale(1.1);
+    }
     .r {
-      background-color: rgba(27, 12, 101, 0.937);
+      background-color: #002a61;
     }
 
     .a:hover, .r:hover {
@@ -133,7 +146,7 @@
       width: 100%;
       height: 400px;
       grid-area: cinco;
-      background-color: rgb(199, 90, 90);
+      background-color: #609ddde3;
       font-size: 18px;
       display: flex;
       justify-content: center;
@@ -145,10 +158,11 @@
 
     .text2 {
       grid-area: seis;
-      background-color: rgb(242, 162, 162);
+      background-color: rgba(108, 146, 204, 1);
       text-align: center;
       font-size: 30px;
       padding: 2%;
+  
     }
 
     .text3 {
@@ -165,7 +179,7 @@
     }
 
     .text3 img {
-      border: 1px solid #999;
+      border: 1px solid #ffffffff;
       max-width: 40%;
       object-fit: cover;
       border-radius: 10px;
@@ -190,23 +204,23 @@
     }
 
     .l {
-      background-color: rgb(9, 14, 91);
+      background-color: rgba(31, 72, 150, 1);
     }
 
     .m {
-      background-color: rgb(20, 17, 95);
+      background-color: rgba(16, 41, 126, 1);
     }
 
     article {
       grid-area: nueve;
-      background-color: bisque;
+      background-color: #609ddde3;
       padding: 20px;
       display: flex;
       justify-content: space-around;
       align-items: flex-start;
       gap: 30px;
       font-size: 16px;
-      color: rgb(11, 7, 66);
+      color: rgba(11, 9, 41, 1);
     }
 
     article nav {
@@ -230,7 +244,9 @@
     }
 
     a {
-      color: white;
+      color:  rgba(3, 22, 87, 1);
+      font-family: Arial, sans-serif;
+
     }
     .do{
       grid-area: diez;
@@ -238,7 +254,7 @@
     }
     #comentarios {
   grid-area: comentarios;
-  background-color:white;
+  background-color: #486ab4ff;
   padding:20px;
   text-align: center;
   font-family: Arial, sans-serif;
@@ -246,7 +262,7 @@
 }
 
 #comentarios h2 {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(3, 22, 87, 1);
   margin-bottom: 20px;
   font-size: 32px;
 }
@@ -257,7 +273,7 @@
   padding: 15px;
   font-size: 16px;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #194094ff;
   resize: vertical;
   outline: none;
   transition: border 0.3s;
@@ -322,10 +338,22 @@
   </nav>
 
   <nav class="cajas">
-    <div class="a">Estudiantes</div>
-    <div class="r">Profesores</div>
-    <div class="a">Aulas</div>
-    <div class="r">Administrativos</div>
+    <div class="a">Estudiantes<br>
+    ㅤ<br>
+      500<br>
+    </div>
+    <div class="r">Profesores<br>
+      ㅤ<br>
+      37<br>
+    </div>
+    <div class="a">Aulas<br>
+      ㅤ<br>
+      25<br>
+    </div>
+    <div class="r">Administrativos<br>
+      ㅤ<br>
+      4<br>
+    </div>
   </nav>
 
   <aside class="text1">
@@ -343,7 +371,7 @@
     </p>
   </aside>
   
-  <div class="text2"><a href="../clases/intro.php">Estudiantes o profesor </a> </div>
+  <div class="text2"><a href="../clases/intro.php">Estudiantes o Profesor o Administrador</a> </div>
 
   <aside class="text3">
     Últimas noticias
@@ -364,8 +392,8 @@
     <nav>
       <h3>Mapa interactivo</h3>
       <iframe 
-        src="https://www.google.com/maps/embed?pb=..."
-        width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy">
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.1520097114476!2d-66.17119342463457!3d-17.40449116465946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e37392613ab3d1%3A0xc9525cbc4d329bf1!2sUnidad%20Educativa%20La%20Salle%20CONVENIO!5e0!3m2!1ses-419!2sbo!4v1750732544446!5m2!1ses-419!2sbo" 
+        width="100%" height="370" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy">
       </iframe>
     </nav>
 
@@ -381,7 +409,14 @@
       <p>Facebook: La Salle</p>
 
       <h3>Horario</h3>
-      <p>Lunes a Viernes<br>7:00am</p>
+      <p>Lunes ㅤㅤㅤ  ㅤ07:00 - 16:00<br>
+         Martesㅤㅤㅤㅤ 07:00 - 16:00<br>
+         Miércolesㅤㅤㅤ07:00 - 16:00<br>
+         Jueves ㅤ ㅤ ㅤ 07:00 - 16:00 <br>        
+         Viernesㅤㅤㅤㅤ07:00 - 16:00 <br>
+         Sábadoㅤ ㅤ ㅤ Cerrado <br> 
+         Domingoㅤㅤㅤ Cerrado <br>
+          </p>
     </aside>
   </article>
  
@@ -400,5 +435,4 @@
   </footer>
 </body>
 </html>
-
 

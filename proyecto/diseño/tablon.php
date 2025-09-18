@@ -4,196 +4,196 @@
   <meta charset="UTF-8">
   <title>Tablón de Tareas - Matemáticas</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
-    <style>
+  <style>
     body {
+         display: grid;
+      grid-template-columns: 50% 50%;
+      grid-template-rows: 100px 600px 100px;
+      grid-template-areas:
+        "in in"
+        "ana tet"
+        "ert ert";
       font-family: 'Inter', sans-serif;
       background-color: #f0f4f8;
       display: flex;
       min-height: 100vh;
+      margin: 0;
+      color: #222;
+
+    }
+    .nan{
+      grid-area:ana;
     }
 
-    
-    .sidebar {
-      width: 220px;
-      background-color: #0d47a1;
-      color: white;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .sidebar h2 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .sidebar a {
-      color: white;
-      text-decoration: none;
-      padding: 10px;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    .sidebar a:hover,
-    .sidebar a.active {
-      background-color: #1565c0;
-    }
-
-    
     .main {
+      grid-area:in;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
 
+    
     .header {
-      background-color: #e53935;
+      background: linear-gradient(90deg, #0d47a1, #1565c0, #1e88e5);
       color: white;
-      padding: 30px 40px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.25);
     }
 
     .header h1 {
-      font-size: 28px;
+      font-size: 32px;
+      margin: 0;
+      font-weight: 700;
+      text-shadow: 1px 2px 5px rgba(0,0,0,0.4);
     }
 
     .content {
+      grid-area:tet;
       padding: 30px 40px;
     }
 
+  
     .card {
-      background-color: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-left: 5px solid #0d47a1;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      background: linear-gradient(135deg, #ffffff, #f5f7fa);
+      padding: 25px;
+      margin-bottom: 25px;
+      border-left: 6px solid #0d47a1;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.18);
     }
 
     .card h3 {
       color: #0d47a1;
-      font-size: 18px;
-      margin-bottom: 6px;
+      font-size: 20px;
+      margin-bottom: 12px;
     }
 
     .card p {
-      font-size: 14px;
+      font-size: 15px;
       color: #333;
+      line-height: 1.5;
     }
-    #ppubli{
-      height: 100%;
+
+   
+    label {
+      font-weight: 600;
+      color: #0d47a1;
+      display: block;
+      margin-top: 10px;
     }
+
+    input[type="text"],
+    input[type="date"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px; 
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      background: #fff;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #0d47a1;
+      box-shadow: 0 0 6px rgba(13,71,161,0.3);
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background: linear-gradient(90deg, #0d47a1, #1565c0);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #1565c0, #1e88e5);
+      transform: scale(1.05);
+    }
+
 
     footer {
+      grid-area:ert;
       text-align: center;
-      padding: 15px;
-      font-size: 12px;
-      color: #888;
+      padding: 20px;
+      font-size: 13px;
+      color: #555;
+      background: #eaeaea;
+      margin-top: auto;
     }
 
+  
     @media screen and (max-width: 768px) {
       body {
         flex-direction: column;
       }
-      .sidebar {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-around;
-      }
       .main {
         padding-top: 10px;
-        }
-        }
-        input[type="text"],
-        input[type="date"],
-        textarea {
-         width: 100%;
-         padding: 10px;
-         margin-top: 6px;
-         margin-bottom: 16px;
-         border: 1px solid #ccc;
-         border-radius: 6px; 
-         font-family: 'Inter', sans-serif;
-         font-size: 14px;
-        }
-
-      textarea {
-         resize: vertical;
-        }
-
-      button {
-         background-color: #0d47a1;
-         color: white;
-         padding: 10px 20px;
-         border: none;
-         border-radius: 6px;
-         font-weight: 600;
-         cursor: pointer;
-         transition: background-color 0.3s ease;
       }
-
-        button:hover {
-         background-color: #1565c0;
-      }
+    }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Clases</h2>
-    <a href="" class="active">📌 Tablón</a>
-    <a href="">📂 Trabajo de clase</a>
-    <a href="">👥 Personas</a>
-    <a href="">📊 Calificaciones </a>
+<nav class="nan">
+  <?php
+  include("menuest.php");
+  ?>
+</nav>
+
+<div class="main">
+  <div class="header">
+    <h1>Matemáticas - 6to Secundaria</h1>
   </div>
 
-    <div class="main">
-    <div class="header">
-      <h1>Matemáticas - 6to Secundaria</h1>
+  <article>
+ <?php
+  include("tareas.php");
+  ?>
+  </aside>
+
+  <div class="content">
+    <div class="card">
+      <h3>✏️ Nueva publicación</h3>
+      <form action="publicacion.php" method="post">
+        <label for="nom">Nombre:</label>
+        <input type="text" id="nom" name="nombre" required>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
     </div>
-
-    <div class="content">
-      <div class="card">
-        <h3>📌 Tarea: Ecuaciones cuadráticas</h3>
-        <p>Fecha límite: 26 de junio a las 16:00</p>
-      </div>
-
-      <div class="card">
-        <h3>📝 Anuncio del profesor </h3>
-        <p>Se revisará la guía de repaso el viernes en clase. ¡No faltes!</p>
-      </div>
-
-      <div class="card">
-        <h3>📚 Nuevo material: Funciones lineales</h3>
-        <p>Disponible en la sección de materiales desde hoy.</p>
-      </div>
-    </div>
-    <div class="content">
-  <div class="card">
-    <h3>✏️ Nueva publicación</h3>
-    <form action="publicacion.php" method="get">
-      
-      <label for="ci">CI:</label>
-      <input type="text" name="ci">
-
-      <label for="nom">Nombre:</label>
-      <input type="text" id="nom" name="nombre" required>
-
-      <label for="fecha">Fecha:</label>
-      <input type="date" id="fecha" name="fecha" required>
-
-      <label for="mensaje">Mensaje:</label>
-      <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-
-      <button type="submit">Enviar</button>
-    </form>
   </div>
+
+  <footer>
+    Pedro Poveda · Proyecto final 2025
+  </footer>
 </div>
-
-    <footer>
-      Plataforma educativa · Proyecto final 2025
-    </footer>
-  </div>
 
 </body>
 </html>

@@ -1,175 +1,136 @@
-<?php
-$servername="localhost";
-    $username="root";
-    $contraseña="";
-    $dbname="proyecto";
-
-    $conn= new mysqli($servername, $username, $contraseña, $dbname);
-
-    if($conn->connect_error) {
-         echo"<script>alert('Ocurrio un error :( vuelve a intentarlo')</script>";
-    }
-    
-
+<?php 
 session_start();
-$ci=$_SESSION['ci'];
-$rol=$_SESSION['rol'];
- if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
-    header("Location:../diseño/principal.php");
-    exit();
- }
-if ($_SESSION['rol'] !== 'estudiante') {
-    header("Location:../diseño/principal.php");
-    exit();
- }
- include("../administrador/validarbloqueo.php");
+$servername="localhost";
+$username="root";
+$contraseña="";
+$dbname="proyecto";
+
+$conn= new mysqli($servername, $username, $contraseña, $dbname);
+
+if($conn->connect_error) {
+    echo "<script>alert('Ocurrio un error :( vuelve a intentarlo')</script>";
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido Estudiante</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        body {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: auto 1fr;
-            grid-template-areas:
-                "header"
-                "content";
-            background-image: url("../diseño/logo.png");
-            background-repeat: repeat;
-            background-size: 50% 50%;
-            background-attachment: fixed;
-            position: relative;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clases</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+h2{
+    font-family: 'oswald', sans-serif;
+    font-weight: 700;
+    font-size: 2em;
+    color: #062870;
+    text-transform: uppercase;
+}
+header{
+    width:100%;
+    grid-area: cabeza;
+}
+.menu{ 
+    width:100%;
+    grid-area: men;
+}
+.espacio{
+    grid-area: esp;
+}
+.cajas{
+    background-color: rgb(255, 255, 255);
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 3px double rgba(6, 32, 150, 1);
+    opacity: 0.95;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    grid-area:cajitas;
+}
+.clases{
+    background-color: #005187;
+    height: 100px;
+    width: 300px;
+    font-family:'Trebuchet MS', Arial, sans-serif;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    
+ 
+}
 
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.6);
-            z-index: -1;
-        }
+body{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(231, 231, 231);
+    background-image: url('logo.png');
+    background-repeat: repeat;
+    background-size: 50% 50%;
+    background-attachment: fixed;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 150px 300px 700px;
+    grid-template-areas:
+        "cabeza cabeza"
+        "men esp"
+        "cajitas cajitas";
+}
+body::before {
+    content: "";
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background-color: rgba(255,255,255,0.7);
+    z-index: -1;
+}
 
-        header {
-            grid-area: header;
-            text-align: center;
-            background-color: #1b3d74;
-            color: white;
-            padding: 40px 20px;
-            font-size: 40px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 50, 0.5);
-            opacity: 50%;
-        }
 
-        nav {
-            grid-area: content;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 40px;
-        }
-
-        .materias {
-            background-color: #e3ecfa;
-            text-align: center;
-            border-radius: 10px;
-            border: 4px double #1d4e89;
-            padding: 20px;
-            opacity: 0.95;
-            transition: transform 0.3s ease;
-            width: 400px;
-            height: 250px;
-        }
-
-        .materias:hover {
-            transform: scale(1.05);
-            background-color: #d0e2f5;
-        }
-
-        button {
-            background-color: #1d4e89;
-            color: white;
-            font-size: 22px;
-            font-family: 'Trebuchet MS', sans-serif;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            width: 100%;
-            height: auto;
-            padding: 20px;
-            border: none;
-            border-radius: 8px;
-        }
-
-        button:hover {
-            background-color: #153a68;
-            transform: scale(1.05);
-        }
-
-        button a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        @media (max-width: 1024px) {
-            nav {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 20px;
-            }
-
-            header {
-                font-size: 30px;
-                padding: 30px 10px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            nav {
-                grid-template-columns: 1fr;
-                padding: 10px;
-            }
-
-            header {
-                font-size: 24px;
-                padding: 20px 10px;
-            }
-        }
-    </style>
+</style>
 </head>
 <body>
-    <header>
-        BIENVENIDO ESTUDIANTE
-    </header>
+<header>
+<?php include("cabeza.php"); ?>
+</header>
+<nav class="menu">
+<?php include("menuest.php"); ?>
+</nav>
+<nav class="espacio"></nav>
+<aside class="cajas">
 
-    <nav>
-        <div class="materias"><button><a href="../diseño/tablon.php">MATEMÁTICAS</a></button></div>
-        <div class="materias"><button><a href="formeditest.php">EDITAR</a></button></div>
-        <div class="materias"><button><a href="../usuarios/infouser.php">MOSTRAR INFORMACION</a></button></div>
-        <div class="materias"><button>LITERATURA</button></div>
-        <div class="materias"><button>QUÍMICA</button></div>
-        <div class="materias"><button>ARTES PLÁSTICAS</button></div>
-        <div class="materias"><button>EDUCACIÓN FÍSICA</button></div>
-        <div class="materias"><button>FÍSICA</button></div>
-        <div class="materias"><button>COMPUTACIÓN</button></div>
-        <div class="materias"><button>BIOLOGÍA</button></div>
-        <div class="materias"><button>FILOSOFÍA</button></div>
-        <div class="materias"><button>RELIGIÓN</button></div>
-        <div class="materias"><button>CS. SOCIALES</button></div>
-    </nav>
-    
+<?php
+$ci=$_SESSION['ci'];
+$sql = "SELECT * FROM clase WHERE usuario_id=$ci";
+$resultado = $conn->query($sql);  
+if ($resultado->num_rows > 0) {
+    while($clase = $resultado->fetch_assoc()){
+        $nombre = $clase['nombre'];
+        $idclase = $clase['idclase'];
+?>
+<section class="clases">
+<a href="tablon.php?id=<?= $idclase ?>" style="color:white; text-decoration:none;">
+<h2><?= $nombre ?></h2>
+</a>
+</section>
+<?php
+    }
+}
+?>
+</aside>
+<menu></menu>
 </body>
 </html>

@@ -1,4 +1,36 @@
-<!DOCTYPE html>
+<?php
+$servername="localhost";
+    $username="root";
+    $contraseña="";
+    $dbname="proyecto";
+
+    $conn= new mysqli($servername, $username, $contraseña, $dbname);
+
+    if($conn->connect_error) {
+        echo "Ocurrio un error :( vuelve a intentarlo";
+    }
+    
+session_start();
+    $id=$_SESSION['id'];
+    $tit=$_SESSION['tit'];
+    $des=$_SESSION['des'];
+    $tem=$_SESSION['tem'];
+    $not=$_SESSION['not'];
+    
+    $sql="SELECT * FROM tarea WHERE idtarea='$id'";
+    $resultado = $conn->query($sql);
+
+    if($resultado->num_rows>0){
+       while($fila=$resultado->fetch_assoc()){
+            $id=$fila['idtarea'];
+            $titulo=$fila['titulo'];
+            $descripcion=$fila['descripcion'];
+            $tema=$fila['tema'];
+            $nota=$fila['nota'];
+    }
+    }
+    ?>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +38,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <title>Document</title>
-    <style>
-        body {
+<style>    body {
             position: relative;
             margin: 0;
             height: 100%;
@@ -72,7 +103,7 @@
             color: rgba(28, 28, 70, 1);
         }
         input[type="submit"],
-        input[type="reset"] ,#x {
+        input[type="reset"] {
             width: 48%;
             background-color:rgba(28, 28, 70, 1);
             color: white;
@@ -83,7 +114,7 @@
         }
 
         input[type="submit"]:hover,
-        input[type="reset"]:hover ,#x{
+        input[type="reset"]:hover {
             transform: scale(1.05);
             opacity: 0.9;
         }
@@ -94,118 +125,73 @@
             margin-bottom: 10px;
             display: block;
         }
-        #x{
-          text-decoration:none;
-        }
-
-    </style>
+        
+        </style>
 </head>
 <body>
-    <center> <form action="regadminmost.php" method="post" novalidate>
-    <h1>ADMINISTRADOR</h1>
-    <h2>Llena el formulario con tus datos</h2>
-    
-    <label for="rol">Rol</label><br>
-    <input type="text"value="administrador" name="rol" readonly><br>
-    
-    <label for="nom">Nombre</label><br>
-    <input type="text" name="pn" placeholder="Ej: Ximena" /><br>
+    <center> <form action="tareaedit.php?titulo=$titulo" method="post" novalidate>
+    <h1>TAREA</h1>
+    <h2>Edita:</h2>
 
-    <label for="ape">Apellidos</label><br>
-    <input type="text" name="pa" placeholder="Ej: Ugarte Gutierrez" /><br>
-    
-    <label for="ci">CI</label><br>
-    <input type="text" name="pci" placeholder="Ej: 1273567" /><br>
+    <label for="nom">TITULO</label><br>
+    <input type="text" name="titu"  value=<?=$titulo?> ><br>
 
-    <input type="hidden" name="pc" value="todos">
+    <label for="ape">DESCRIPCION</label><br>
+    <input type="text" name="desc" value=<?=$descripcion?> ><br>
 
-    <label for="Rd">Rude</label><br>
-    <input type="text" name="pr" placeholder="Ej: 198827289" /><br>
+    <label for="ape">TEMA</label><br>
+    <input type="text" name="tem" value=<?=$tema?> ><br>
 
-    <label for="di">Dirección</label><br>
-    <input type="text" name="pd" placeholder="Ej: Av América c.Benjamín Guzmán" /><br>
-
-    <label for="fn">Fecha de nacimiento</label><br>
-    <input type="date" name="pf" placeholder="29/10/2007" /><br>
-
-    <label for="tel"> <table>Telefono</table></label><br>
-    <input type="text" name="pt" placeholder="Ej: 64943243" /><br>
-
-    <label for="co">Contraseña</label><br>
-    <input type="password" name="pco" placeholder="********" /><br>
+     <label for="ape">NOTA</label><br>
+    <input type="number" name="not" value=<?=$nota?> ><br>
 
 
     <div class="form-buttons"><br>
-     <br> <input type="submit" value="Enviar" />
-      <input type="reset" value="Limpiar" />
-      <a id="x" href="../usuarios/logueo.php">iniciar sesion</a>
+     <br> <input type="submit" value="Corregir" >
+      <input type="reset" value="Limpiar" >
+       <a id="x"href="borrartareaform.php">borrar tarea</a>
+      
+
+      
     </div>
   </form></center>
 <script>
  $("form").validate({
     rules: {
-        pn: {
+        titu: {
           required: true,
           maxlength: 12
         },
-        pa: {
+        desc: {
           required: true,
-          maxlength: 25
+          maxlength: 200
         },
-        pci: {
+        tem:{
           required: true,
-          digits: true,
-          minlength:7
-        },
-        pr: {
-          required: true
-        },
-        pd: {
-          required: true
-        },
-        pf:{
-            required: true
-        },
-        pt:{
-            required:true,
-            digits: true
-        },
-          pco:{
-          required: true,
-          minlength: 6,
-          maxlength: 10
-          }
+          maxlength: 12
         }
+        not: {
+          required: true,
+          maxlength: 3
+        }
+        },
       },
       messages: {
-        pn: {
+        titu: {
           required: "Este campo es obligatorio",
           maxlength: "Máximo 12 caracteres"
         },
-        pa: {
+        desc: {
           required: "Este campo es obligatorio",
-          maxlength: "Máximo 25 caracteres"
+          maxlength: "Máximo 200 caracteres"
         },
-        pci:{
+         tem:{
           required: "Este campo es obligatorio",
-          digits: "Solo se permiten números"
+          maxlength: "Máximo 12 caracteres"
         },
-        pr:{
+        not:{
           required: "Este campo es obligatorio"
-        },
-        pd:{
-          required: "Este campo es obligatorio"
-        },
-        pf: {
-          required: "Este campo es obligatorio"
-        },
-        pt: {
-          required: "Este campo es obligatorio"
-        },
-        pco: {
-          required: "Este campo es obligatorio",
-          minlength: "Mínimo 6 caracteres",
-          maxlength: "Máximo 10 caracteres"
+          maxlength: "Máximo 3 caracteres"
         }
       }
 );
