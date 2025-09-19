@@ -101,7 +101,7 @@
     </style>
 </head>
 <body>
-    <center> <form action="regestmost.php" method="post" novalidate>
+    <center> <form action="regestmost.php" method="post" >
     <h1>ESTUDIANTE</h1>
     <h2>Llena el formulario con tus datos</h2>
     
@@ -222,7 +222,8 @@
           required: "Este campo es obligatorio"
         },
         pt: {
-          required: "Este campo es obligatorio"
+          required: "Este campo es obligatorio",
+          digits: "Solo se permiten números"
         },
         pco: {
           required: "Este campo es obligatorio",
