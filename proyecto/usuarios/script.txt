@@ -1,0 +1,127 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema proyecto
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `proyecto` DEFAULT CHARACTER SET utf8;
+USE `proyecto`;
+
+-- -----------------------------------------------------
+-- Table `usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` INT NOT NULL,
+  `contraseña` VARCHAR(45) NULL,
+  `rol` VARCHAR(45) NULL,
+  `bloqueado` BINARY(1) NULL,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `informacion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `informacion` (
+  `ci` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `apellido` VARCHAR(45) NULL,
+  `direccion` VARCHAR(45) NULL,
+  `fechadenacimiento` DATE NULL,
+  `telefono` INT NULL,
+  `curso` VARCHAR(45) NULL,
+  `rude` INT NULL,
+  `usuario_id` INT NOT NULL,
+  PRIMARY KEY (`ci`, `usuario_id`),
+  INDEX `fk_informacion_usuario1_idx` (`usuario_id` ASC),
+  CONSTRAINT `fk_informacion_usuario1`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+) ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `clase`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clase` (
+  `idclase` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `codigo` VARCHAR(45) NULL,
+  `curso` VARCHAR(45) NULL,
+  `usuario_id` INT NOT NULL,
+  PRIMARY KEY (`idclase`, `usuario_id`),
+  INDEX `fk_clase_usuario1_idx` (`usuario_id` ASC),
+  CONSTRAINT `fk_clase_usuario1`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+) ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `comentarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `comentarios` (
+  `idcomentarios` INT NOT NULL AUTO_INCREMENT,
+  `cuenta` VARCHAR(45) NULL,
+  `fechaE` DATETIME NULL,
+  `fechaC` DATETIME NULL,
+  `publicacion` VARCHAR(45) NULL,
+  `clase_idclase` INT NOT NULL,
+  PRIMARY KEY (`idcomentarios`, `clase_idclase`),
+  INDEX `fk_comentarios_clase1_idx` (`clase_idclase` ASC),
+  CONSTRAINT `fk_comentarios_clase1`
+    FOREIGN KEY (`clase_idclase`)
+    REFERENCES `clase` (`idclase`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+) ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `tarea`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tarea` (
+  `idtarea` INT NOT NULL AUTO_INCREMENT,
+  `titulo` VARCHAR(45) NULL,
+  `descripcion` VARCHAR(45) NULL,
+  `tema` VARCHAR(45) NULL,
+  `nota` INT NULL,
+  `clase_idclase` INT NOT NULL,
+  PRIMARY KEY (`idtarea`, `clase_idclase`),
+  INDEX `fk_tarea_clase1_idx` (`clase_idclase` ASC),
+  CONSTRAINT `fk_tarea_clase1`
+    FOREIGN KEY (`clase_idclase`)
+    REFERENCES `clase` (`idclase`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+) ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `entrega`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `entrega` (
+  `id_usuario` INT NOT NULL,
+  `tarea_idtarea` INT NOT NULL,
+  `nota` INT NULL,
+  `fechaentrega` DATETIME NULL,
+  PRIMARY KEY (`id_usuario`, `tarea_idtarea`),
+  INDEX `fk_usuario_has_tarea_tarea1_idx` (`tarea_idtarea` ASC),
+  INDEX `fk_usuario_has_tarea_usuario1_idx` (`id_usuario` ASC),
+  CONSTRAINT `fk_usuario_has_tarea_usuario1`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuario_has_tarea_tarea1`
+    FOREIGN KEY (`tarea_idtarea`)
+    REFERENCES `tarea` (`idtarea`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+) ENGINE = InnoDB;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
