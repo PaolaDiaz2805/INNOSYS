@@ -136,134 +136,124 @@ session_start();
         </style>
 </head>
 <body>
-    <center> <form action="editarest.php?id=$ci" method="post" novalidate>
+    <center>
+  <form action="editarest.php?id=<?= $ci ?>" method="post" novalidate>
     <h1>ESTUDIANTE</h1>
     <h2>Edita:</h2>
 
-    <label for="nom">Nombre</label><br>
-    <input type="text" name="pn"  value=<?=$nombre?> ><br>
+    <label for="pn">Nombre</label><br>
+    <input type="text" name="pn" value="<?= $nombre ?>"><br>
 
-    <label for="ape">Apellidos</label><br>
-    <input type="text" name="pa" value=<?=$apellido?> ><br>
+    <label for="pa">Apellidos</label><br>
+    <input type="text" name="pa" value="<?= $apellido ?>"><br>
 
-    <label for="cur">Curso</label><br>
-    <select name="pcu" id="p" value=<?=$curso?>>
-      <option value="primero">1ro A sec.</option>
-      <option value="primero">1ro B sec.</option>
-      <option value="segundo">2do A sec.</option>
-      <option value="segundo"> 2do B sec. </option>
-      <option value="tercero"> 3ro A sec.</option>
-      <option value="tercero"> 3ro B sec.</option>
-      <option value="cuarto"> 4to A sec.</option>
-      <option value="cuarto"> 4to B sec.</option>
-      <option value="quinto"> 5to A sec.</option>
-      <option value="quinto"> 5to B sec.</option>
-      <option value="sexto"> 6to A sec.</option>
-      <option value="sexto"> 6to B sec.</option>
-    
+    <label for="pcu">Curso</label><br>
+    <select name="pcu" id="p">
+      <option value="primero" <?= $curso == 'primero' ? 'selected' : '' ?>>1ro A sec.</option>
+      <option value="primero" <?= $curso == 'primero' ? 'selected' : '' ?>>1ro B sec.</option>
+      <option value="segundo" <?= $curso == 'segundo' ? 'selected' : '' ?>>2do A sec.</option>
+      <option value="segundo" <?= $curso == 'segundo' ? 'selected' : '' ?>>2do B sec.</option>
+      <option value="tercero" <?= $curso == 'tercero' ? 'selected' : '' ?>>3ro A sec.</option>
+      <option value="tercero" <?= $curso == 'tercero' ? 'selected' : '' ?>>3ro B sec.</option>
+      <option value="cuarto" <?= $curso == 'cuarto' ? 'selected' : '' ?>>4to A sec.</option>
+      <option value="cuarto" <?= $curso == 'cuarto' ? 'selected' : '' ?>>4to B sec.</option>
+      <option value="quinto" <?= $curso == 'quinto' ? 'selected' : '' ?>>5to A sec.</option>
+      <option value="quinto" <?= $curso == 'quinto' ? 'selected' : '' ?>>5to B sec.</option>
+      <option value="sexto" <?= $curso == 'sexto' ? 'selected' : '' ?>>6to A sec.</option>
+      <option value="sexto" <?= $curso == 'sexto' ? 'selected' : '' ?>>6to B sec.</option>
     </select>
-    <br>
+    <br><br>
 
-    <label for="Rd">Rude</label><br>
-    <input type="text" name="pr"  value=<?=$rude?> ><br>
+    <label for="pr">Rude</label><br>
+    <input type="text" name="pr" value="<?= $rude ?>"><br>
 
-    <label for="di">Dirección</label><br>
-    <input type="text" name="pd" value=<?=$direccion?> ><br>
+    <label for="pd">Dirección</label><br>
+    <input type="text" name="pd" value="<?= $direccion ?>"><br>
 
-    <label for="fn">Fecha de nacimiento</label><br>
-    <input type="date" name="pf" value=<?=$fechadenacimiento?> ><br>
+    <label for="pf">Fecha de nacimiento</label><br>
+    <input type="date" name="pf" value="<?= $fechadenacimiento ?>"><br>
 
-    <label for="tel"> <table>Telefono</table></label><br>
-    <input type="text" name="pt" value=<?=$telefono?>/><br>
+    <label for="pt">Teléfono</label><br>
+    <input type="text" name="pt" value="<?= $telefono ?>"><br>
 
-    <label for="co">Contraseña</label><br>
-    <input type="password" name="pco"  value=<?=$contraseña?> ><br>
+    <label for="pco">Contraseña</label><br>
+    <input type="password" name="pco" value="<?= $contraseña ?>"><br>
 
-    
     <div class="form-buttons"><br>
-     <br> <input type="submit" value="Corregir" >
-      <input type="reset" value="Limpiar" >
-      <input type="hidden" name="pci"value=<?=$ci?>>
-    <input type="hidden" name="rol" value=<?$rol?>>
-
-      
+      <input type="submit" value="Corregir">
+      <input type="reset" value="Limpiar">
+      <input type="hidden" name="pci" value="<?= $ci ?>">
+      <input type="hidden" name="rol" value="<?= $rol ?>">
     </div>
-  </form></center>
+  </form>
+</center>
+
 <script>
- $("form").validate({
+$("form").validate({
     rules: {
         pn: {
-          required: true,
-          maxlength: 12
+            required: true,
+            maxlength: 12
         },
         pa: {
-          required: true,
-          maxlength: 25
+            required: true,
+            maxlength: 25
         },
-        pcu:{
-          required: true
-        }
-        pr: {
-          required: true
-        },
-        pd: {
-          required: true
-        },
-        pf:{
+        pcu: {
             required: true
         },
-        pt:{
-            required:true,
-            digits: true
-        },
-          pco:{
-          required: true,
-          minlength: 6,
-          maxlength: 10
-          }
-        },
-      },
-      messages: {
-        pn: {
-          required: "Este campo es obligatorio",
-          maxlength: "Máximo 12 caracteres"
-        },
-        pa: {
-          required: "Este campo es obligatorio",
-          maxlength: "Máximo 25 caracteres"
-        },
-         pcu:{
-          required: "Este campo es obligatorio"
-        },
-        pr:{
-          required: "Este campo es obligatorio"
-        },
-        pd:{
-          required: "Este campo es obligatorio"
-        },
-        pf:{
-          required: "Este campo es obligatorio"
-        },
-        pt: {
-          required: "Este campo es obligatorio"
+        pr: {
+            required: true
         },
         pd: {
-          required: "Este campo es obligatorio"
+            required: true
         },
         pf: {
-          required: "Este campo es obligatorio"
+            required: true
         },
         pt: {
-          required: "Este campo es obligatorio"
+            required: true,
+            digits: true
         },
-        pco:{
-          required: "Este campo es obligatorio",
-          minlength: "Mínimo 6 caracteres",
-          maxlength: "Máximo 10 caracteres"
+        pco: {
+            required: true,
+            minlength: 6,
+            maxlength: 10
         }
-      }
-);
-  </script>
+    },
+    messages: {
+        pn: {
+            required: "Este campo es obligatorio",
+            maxlength: "Máximo 12 caracteres"
+        },
+        pa: {
+            required: "Este campo es obligatorio",
+            maxlength: "Máximo 25 caracteres"
+        },
+        pcu: {
+            required: "Selecciona un curso"
+        },
+        pr: {
+            required: "Este campo es obligatorio"
+        },
+        pd: {
+            required: "Este campo es obligatorio"
+        },
+        pf: {
+            required: "Este campo es obligatorio"
+        },
+        pt: {
+            required: "Este campo es obligatorio",
+            digits: "Solo se permiten números"
+        },
+        pco: {
+            required: "Este campo es obligatorio",
+            minlength: "Mínimo 6 caracteres",
+            maxlength: "Máximo 10 caracteres"
+        }
+    }
+});
+</script>
 
 </body>
 </html>

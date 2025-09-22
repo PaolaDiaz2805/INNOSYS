@@ -101,106 +101,118 @@
     </style>
 </head>
 <body>
-   <center> <form action="regpromost.php" method="post" novalidate>
+   <center>
+  <form action="regpromost.php" method="post" novalidate>
     <h1>PROFESOR</h1>
     <h2>Llena el formulario con tus datos</h2>
-    
-    <label for="rol">Rol</label><br>
-    <input type="text"value="profesor" name="rol" readonly><br>
-    
-    <label for="nom">Nombre</label><br>
-    <input type="text" name="pn" placeholder="Ej: Ximena" /><br>
-    
-    <label for="ape">Apellidos</label><br>
-    <input type="text" name="pa" placeholder="Ej: Ugarte Gutierrez" /><br>
 
-    <label for="ci">CI</label><br>
-    <input type="text" name="pci" placeholder="Ej: 1273567" /><br>
+    <label for="rol">Rol</label><br>
+    <input type="text" value="profesor" name="rol" readonly><br>
+
+    <label for="pn">Nombre</label><br>
+    <input type="text" name="pn" placeholder="Ej: Ximena"><br>
+
+    <label for="pa">Apellidos</label><br>
+    <input type="text" name="pa" placeholder="Ej: Ugarte Gutierrez"><br>
+
+    <label for="pci">CI</label><br>
+    <input type="text" name="pci" placeholder="Ej: 1273567"><br>
 
     <input type="hidden" name="pc" value="todos">
-    <label for="rude">Rude</label>
-    <input type="text" name="pr" placeholder="1234567890">
 
-    <label for="di">Dirección</label><br>
-    <input type="text" name="pd" placeholder="Ej: Av América c.Benjamín Guzmán" /><br>
+    <label for="pr">Rude</label><br>
+    <input type="text" name="pr" placeholder="1234567890"><br>
 
-    <label for="fn">Fecha de nacimiento</label><br>
-    <input type="date" name="pf" placeholder="29/10/2007" /><br>
+    <label for="pd">Dirección</label><br>
+    <input type="text" name="pd" placeholder="Ej: Av América c.Benjamín Guzmán"><br>
 
-    <label for="tel">Telefono</label>
-    <input type="text" name="pt" placeholder="71707827">
+    <label for="pf">Fecha de nacimiento</label><br>
+    <input type="date" name="pf"><br>
 
-    <label for="co">Contraseña</label><br>
-    <input type="password" name="pco" placeholder="********" /><br>
+    <label for="pt">Teléfono</label><br>
+    <input type="text" name="pt" placeholder="71707827"><br>
 
-    <div class="form-buttons"><br>
-     <br> <input type="submit" value="Enviar" />
-      <input type="reset" value="Limpiar" />
-      <a id="x"href="../usuarios/logueo.php">iniciar sesion</a>
+    <label for="pco">Contraseña</label><br>
+    <input type="password" name="pco" placeholder="********"><br>
+
+    <div class="form-buttons">
+      <input type="submit" value="Enviar">
+      <input type="reset" value="Limpiar">
+      <a id="x" href="../usuarios/logueo.php">Iniciar sesión</a>
     </div>
+  </form>
+</center>
 
-
-</form></center>
-<script> 
- $("form").validate({
+<script>
+$("form").validate({
     rules: {
         pn: {
-          required: true,
-          maxlength: 12
+            required: true,
+            maxlength: 12
         },
         pa: {
-          required: true,
-          maxlength: 25
+            required: true,
+            maxlength: 25
         },
         pci: {
-          required: true,
-          digits: true,
-          minlength:7
+            required: true,
+            digits: true,
+            minlength: 7
         },
         pr: {
-          required: true
-        },
-        pd: {
-          required: true
-        },
-        pf:{
             required: true
         },
-        pt:{
-            required:true,
+        pd: {
+            required: true
+        },
+        pf: {
+            required: true
+        },
+        pt: {
+            required: true,
             digits: true
         },
-          pco:{
-          required: true,
-          minlength: 6,
-          maxlength: 10
-          }
-        },
-      },
-      messages: {
+        pco: {
+            required: true,
+            minlength: 6,
+            maxlength: 10
+        }
+    },
+    messages: {
         pn: {
-          required: "Este campo es obligatorio",
-          maxlength: "Máximo 12 caracteres"
+            required: "Este campo es obligatorio",
+            maxlength: "Máximo 12 caracteres"
         },
         pa: {
-          required: "Este campo es obligatorio",
-          maxlength: "Máximo 25 caracteres"
+            required: "Este campo es obligatorio",
+            maxlength: "Máximo 25 caracteres"
         },
-        pci:{
-          required: "Este campo es obligatorio",
-          digits: "Solo se permiten números"
+        pci: {
+            required: "Este campo es obligatorio",
+            digits: "Solo se permiten números",
+            minlength: "Debe tener al menos 7 dígitos"
         },
-        pr,pd,pf,pt: {
-          required: "Este campo es obligatorio"
+        pr: {
+            required: "Este campo es obligatorio"
         },
-        pc:{
-          required: "Este campo es obligatorio",
-          minlength: "Mínimo 6 caracteres",
-          maxlength: "Máximo 10 caracteres"
+        pd: {
+            required: "Este campo es obligatorio"
+        },
+        pf: {
+            required: "Este campo es obligatorio"
+        },
+        pt: {
+            required: "Este campo es obligatorio",
+            digits: "Solo se permiten números"
+        },
+        pco: {
+            required: "Este campo es obligatorio",
+            minlength: "Mínimo 6 caracteres",
+            maxlength: "Máximo 10 caracteres"
         }
-      }
-);
-
+    }
+});
+</script>
 </script>
 </body>
 </html>

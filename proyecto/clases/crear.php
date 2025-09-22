@@ -1,3 +1,10 @@
+<?php
+session_start();
+if ($_SESSION['rol'] !== 'profesor' && $_SESSION['rol'] !== 'administrador') {
+    header("Location: ../estudiante/prinest.php"); 
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -196,37 +203,37 @@
 <script> 
  $("form").validate({
     rules:{
-        c1:{
+        p1:{
           required: true,
           maxlength: 30
         },
-        c2:{
+        p2:{
           required: true,
           maxlength: 15
         },
-        c3:{
+        p3:{
             required:true,
             maxlength:20
         },
-        c4:{
+        p4:{
             required:true,
             maxlength:5
         }
     },
     messages:{
-      c1:{
+      p1:{
           required: "Este campo es obligatorio",
           maxlength: "Máximo 30 caracteres"
     },
-    c2:{
+    p2:{
           required: "Este campo es obligatorio",
           maxlength: "Máximo 15 caracteres"
     },
-    c3:{
+    p3:{
           required: "Este campo es obligatorio",
           maxlength: "Máximo 20 caracteres"
     },
-    c4:{
+    p4:{
           required: "Este campo es obligatorio",
           maxlength: "Máximo 5 caracteres"
     }

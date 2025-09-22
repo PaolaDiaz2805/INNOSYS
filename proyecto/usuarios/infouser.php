@@ -25,30 +25,6 @@ $rol=$_SESSION['rol'];
     $resultado = mysqli_query($conn,$sql);
     $sql2="SELECT * FROM informacion WHERE ci='$ci'";
     $resultado2 = $conn->query($sql2);
-
-   // if($resultado->num_rows>0){
-        //if($resultado2->num_rows>0){
-        //while($fila=$resultado->fetch_assoc()){
-          //  echo $fila['contraseña']."<br>".$fila['rol'];
-            //while($fila2=$resultado2->fetch_assoc()){
-              //      $_SESSION['ci']=$fila2['ci'];
-                //    $_SESSION['nombre']=$fila2['nombre'];
-                  //  $_SESSION['apellido']=$fila2['apellido'];
-                    //$_SESSION['curso']=$fila2['curso'];
-                   // $_SESSION['direccion']=$fila2['direccion'];
-                   // $_SESSION['fechadenacimiento']=$fila2['fechadenacimiento'];
-                   // $_SESSION['rude']=$fila2['rude'];
-                    //$_SESSION['telefono']=$fila2['telefono'];
-                    //$_SESSION['contraseña']=$fila2['contraseña'];
-                    //$_SESSION['rol']=$fila2['rol'];
-                    
-       //  echo"<br>". $fila2['nombre']."<br>".$fila2['apellido']."<br>".$fila2['ci']."<br>".$fila2['curso']."<br>".$fila2['direccion']."<br>".$fila2['fechadenacimiento']."<br>".$fila2['rude']."<br>".$fila2['telefono'];
-   
-                    
-    //}}}
-//}else{
-    //echo"<script>alert('no hay este usuario')</script>";
-//}
     ?>
     <!DOCTYPE html>
 <html lang="es">
@@ -183,7 +159,7 @@ $rol=$_SESSION['rol'];
 
  ?>
     <div class="header">
-      <h1>Perfil Usuario - <?php echo $row2['nombre']?><?php echo $row2['apellido']?></h1>
+      <h1>Perfil Usuario - <?php echo $row2['nombre']?>  <?php echo $row2['apellido']?></h1>
     </div>
     <div class="profile">
       <div class="profile-info">
@@ -196,7 +172,6 @@ $rol=$_SESSION['rol'];
     <div class="section">
       <h3>Datos básicos</h3>
       <table>
-        <tr><td>Tipo de usuario</td><td>Con acceso</td></tr>
         <tr><td>Usuario</td><td><?php echo $row['rol'];?></td></tr>
         <tr><td>RUDE</td><td><?php echo $row2['rude'];?></td></tr>
         <tr><td>Identificación (CI)</td><td><?php echo $row2['ci'];?></td></tr>

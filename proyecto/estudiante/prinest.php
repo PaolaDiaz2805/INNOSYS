@@ -1,95 +1,46 @@
 <?php 
 session_start();
-$servername="localhost";
-$username="root";
-$contraseña="";
-$dbname="proyecto";
+$servername = "localhost";
+$username = "root";
+$contraseña = "";
+$dbname = "proyecto";
 
-$conn= new mysqli($servername, $username, $contraseña, $dbname);
+$conn = new mysqli($servername, $username, $contraseña, $dbname);
 
-if($conn->connect_error) {
-    echo "<script>alert('Ocurrio un error :( vuelve a intentarlo')</script>";
+if ($conn->connect_error) {
+    echo "<script>alert('Ocurrió un error :( vuelve a intentarlo')</script>";
+    exit();
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clases</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<style>
-h2{
-    font-family: 'oswald', sans-serif;
-    font-weight: 700;
-    font-size: 2em;
-    color: #062870;
-    text-transform: uppercase;
-}
-header{
-    width:100%;
-    grid-area: cabeza;
-}
-.menu{ 
-    width:100%;
-    grid-area: men;
-}
-.espacio{
-    grid-area: esp;
-}
-.cajas{
-    background-color: rgb(255, 255, 255);
-    width: 90%;
-    margin: auto;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    border: 3px double rgba(6, 32, 150, 1);
-    opacity: 0.95;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    grid-area:cajitas;
-}
-.clases{
-    background-color: #005187;
-    height: 100px;
-    width: 300px;
-    font-family:'Trebuchet MS', Arial, sans-serif;
-    text-align: center;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 15px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    
- 
-}
 
-body{
+<style>
+body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: rgb(231, 231, 231);
+    background-color: #e7e7e7;
     background-image: url('logo.png');
     background-repeat: repeat;
     background-size: 50% 50%;
     background-attachment: fixed;
+
     display: grid;
-    grid-template-columns: 25% 75%;
-    grid-template-rows: 150px 300px 700px;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 150px auto;
     grid-template-areas:
         "cabeza cabeza"
-        "men esp"
-        "cajitas cajitas";
+        "menu contenido";
+    min-height: 100vh;
 }
+
 body::before {
     content: "";
     position: fixed;
@@ -99,38 +50,136 @@ body::before {
     z-index: -1;
 }
 
+header {
+    grid-area: cabeza;
+    width: 100%;
+}
 
-</style>
-</head>
-<body>
-<header>
-<?php include("cabeza.php"); ?>
-</header>
-<nav class="menu">
-<?php include("menuest.php"); ?>
-</nav>
-<nav class="espacio"></nav>
-<aside class="cajas">
+.menu {
+    grid-area: menu;
+    background-color: transparent;
+    z-index: 50;
+}
 
-<?php
-$ci=$_SESSION['ci'];
-$sql = "SELECT * FROM clase WHERE usuario_id=$ci";
-$resultado = $conn->query($sql);  
-if ($resultado->num_rows > 0) {
-    while($clase = $resultado->fetch_assoc()){
-        $nombre = $clase['nombre'];
-        $idclase = $clase['idclase'];
-?>
-<section class="clases">
-<a href="tablon.php?id=<?= $idclase ?>" style="color:white; text-decoration:none;">
-<h2><?= $nombre ?></h2>
-</a>
-</section>
-<?php
+.contenido {
+    grid-area: contenido;
+    padding: 20px;
+    margin-left: 20px;
+}
+
+.cajas {
+    background-color: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 10px;
+    border: 3px double rgba(6, 32, 150, 1);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.clase-card {
+    background: white;
+    border: 2px solid #062870;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clase-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+}
+
+.clase-card h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2em;
+    color: #062870;
+    margin-bottom: 10px;
+}
+
+.clase-card p {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.clase-card a {
+    display: inline-block;
+    background-color: #005187;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    transition: background 0.3s;
+}
+
+.clase-card a:hover {
+    background-color: #003f66;
+}
+
+@media (max-width: 1024px) {
+    body {
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "cabeza"
+            "menu"
+            "contenido";
+    }
+
+    .contenido {
+        margin-left: 0;
     }
 }
-?>
-</aside>
-<menu></menu>
+</style>
+</head>
+
+<body>
+<header>
+    <?php include("cabeza.php"); ?>
+</header>
+
+<nav class="menu">
+    <?php include("menuest.php"); ?>
+</nav>
+
+<main class="contenido">
+    <section class="cajas">
+        <?php
+        $ci = $_SESSION['ci'] ?? 0;
+
+        $sql = "SELECT c.idclase, c.nombre, c.curso 
+                FROM clase c
+                INNER JOIN clase_estudiante ce ON c.idclase = ce.id_clase
+                WHERE ce.id_estudiante = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $ci);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        if ($resultado->num_rows > 0) {
+            while ($clase = $resultado->fetch_assoc()) {
+                $nombre = htmlspecialchars($clase['nombre']);
+                $curso = htmlspecialchars($clase['curso']);
+                $idclase = $clase['idclase'];
+                ?>
+                <div class="clase-card">
+                    <h2><?= $nombre ?></h2>
+                    <p><strong>Curso:</strong> <?= $curso ?></p>
+                    <a href="../diseño/tablon.php?id=<?= $idclase ?>">Ingresar</a>
+                </div>
+                <?php
+            }
+        } else {
+            echo "<p>No estás unido a ninguna clase todavía.</p>";
+        }
+        ?>
+    </section>
+</main>
 </body>
 </html>
