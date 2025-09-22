@@ -155,6 +155,7 @@
   </style>
 </head>
 <body>
+
 <nav class="nan">
   <?php
   include("menuest.php");
@@ -195,6 +196,9 @@
     Pedro Poveda · Proyecto final 2025
   </footer>
 </div>
+    <?php
+ session_start();
+?>
 
 </body>
 </html>
