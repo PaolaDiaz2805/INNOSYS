@@ -34,7 +34,6 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Actualizar la publicación
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'];
     $fecha = $_POST['fecha'];

@@ -107,8 +107,8 @@
   display: flex;
   text-align: center;
   gap: 5px;
-  width: 100%;        /* que ocupe todo el ancho posible */
-  padding: 0 10px;    /* opcional, para no pegar a los bordes de la ventana */
+  width: 100%;       
+  padding: 0 10px;   
   box-sizing: border-box;
 }
 

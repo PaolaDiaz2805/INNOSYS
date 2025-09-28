@@ -1,8 +1,54 @@
+<?php
+session_start();
+if (!isset($_SESSION['ci'])) {
+    header("Location: ../usuarios/logueo.php");
+    exit;
+}
+$clase_id = isset($_GET['id']) ? $_GET['id'] : null; 
+if ($clase_id == null) {
+    echo "<script>alert('ID de clase no válido'); window.location = 'index.php';</script>";
+    exit;
+}
+
+$usuario_id = $_SESSION['ci'];  
+
+$servername = "localhost";
+$username = "root";
+$contraseña = "";
+$dbname = "proyecto";
+
+$conn = new mysqli($servername, $username, $contraseña, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT c.idcomentarios, c.cuenta, c.fechaE, c.publicacion, u.id AS user_id, u.rol 
+        FROM comentarios c
+        JOIN usuario u ON c.usuario_id = u.id
+        WHERE c.clase_idclase = '$clase_id'
+        ORDER BY c.fechaE DESC";  
+$result = $conn->query($sql);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nombre = $_POST['nombre'];
+    $fecha = $_POST['fecha'];
+    $mensaje = $_POST['mensaje'];
+
+    $insert_sql = "INSERT INTO comentarios (cuenta, fechaE, publicacion, clase_idclase, usuario_id) VALUES ('$nombre', NOW(), '$mensaje', '$clase_id', '$usuario_id')";
+
+    if ($conn->query($insert_sql) === TRUE) {
+        echo "<script>alert('Publicación creada con éxito'); window.location = 'tablon.php?id=$clase_id';</script>";
+    } else {
+        echo "<script>alert('Error al crear la publicación');</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Tablón de Tareas - Matemáticas</title>
+  <title>Document</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
   <style>
     body {

@@ -1,127 +1,132 @@
--- MySQL Workbench Forward Engineering
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS proyecto CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE proyecto;
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
--- -----------------------------------------------------
--- Schema proyecto
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `proyecto` DEFAULT CHARACTER SET utf8;
-USE `proyecto`;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
--- -----------------------------------------------------
--- Table `usuario`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id` INT NOT NULL,
-  `contraseña` VARCHAR(45) NULL,
-  `rol` VARCHAR(45) NULL,
-  `bloqueado` BINARY(1) NULL,
-  PRIMARY KEY (`id`)
-) ENGINE = InnoDB;
+-- --------------------------------------------------------
+-- Tabla: usuario
+-- --------------------------------------------------------
+CREATE TABLE usuario (
+  id int(11) NOT NULL,
+  contraseña varchar(45) DEFAULT NULL,
+  rol varchar(45) DEFAULT NULL,
+  bloqueado binary(1) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------
--- Table `informacion`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `informacion` (
-  `ci` INT NOT NULL,
-  `nombre` VARCHAR(45) NULL,
-  `apellido` VARCHAR(45) NULL,
-  `direccion` VARCHAR(45) NULL,
-  `fechadenacimiento` DATE NULL,
-  `telefono` INT NULL,
-  `curso` VARCHAR(45) NULL,
-  `rude` INT NULL,
-  `usuario_id` INT NOT NULL,
-  PRIMARY KEY (`ci`, `usuario_id`),
-  INDEX `fk_informacion_usuario1_idx` (`usuario_id` ASC),
-  CONSTRAINT `fk_informacion_usuario1`
-    FOREIGN KEY (`usuario_id`)
-    REFERENCES `usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+-- --------------------------------------------------------
+-- Tabla: clase
+-- --------------------------------------------------------
+CREATE TABLE clase (
+  idclase int(11) NOT NULL AUTO_INCREMENT,
+  nombre varchar(45) DEFAULT NULL,
+  codigo varchar(45) DEFAULT NULL,
+  curso varchar(45) DEFAULT NULL,
+  usuario_id int(11) NOT NULL,
+  PRIMARY KEY (idclase,usuario_id),
+  KEY fk_clase_usuario1_idx (usuario_id),
+  CONSTRAINT fk_clase_usuario1 FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------
--- Table `clase`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `clase` (
-  `idclase` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NULL,
-  `codigo` VARCHAR(45) NULL,
-  `curso` VARCHAR(45) NULL,
-  `usuario_id` INT NOT NULL,
-  PRIMARY KEY (`idclase`, `usuario_id`),
-  INDEX `fk_clase_usuario1_idx` (`usuario_id` ASC),
-  CONSTRAINT `fk_clase_usuario1`
-    FOREIGN KEY (`usuario_id`)
-    REFERENCES `usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+-- --------------------------------------------------------
+-- Tabla: clase_estudiante (relación muchos a muchos)
+-- --------------------------------------------------------
+CREATE TABLE clase_estudiante (
+  id_estudiante int(11) NOT NULL,
+  id_clase int(11) NOT NULL,
+  PRIMARY KEY (id_estudiante,id_clase),
+  KEY id_clase (id_clase),
+  CONSTRAINT clase_estudiante_ibfk_1 FOREIGN KEY (id_estudiante) REFERENCES usuario (id),
+  CONSTRAINT clase_estudiante_ibfk_2 FOREIGN KEY (id_clase) REFERENCES clase (idclase)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------
--- Table `comentarios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `comentarios` (
-  `idcomentarios` INT NOT NULL AUTO_INCREMENT,
-  `cuenta` VARCHAR(45) NULL,
-  `fechaE` DATETIME NULL,
-  `fechaC` DATETIME NULL,
-  `publicacion` VARCHAR(45) NULL,
-  `clase_idclase` INT NOT NULL,
-  PRIMARY KEY (`idcomentarios`, `clase_idclase`),
-  INDEX `fk_comentarios_clase1_idx` (`clase_idclase` ASC),
-  CONSTRAINT `fk_comentarios_clase1`
-    FOREIGN KEY (`clase_idclase`)
-    REFERENCES `clase` (`idclase`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+-- --------------------------------------------------------
+-- Tabla: informacion
+-- --------------------------------------------------------
+CREATE TABLE informacion (
+  ci int(11) NOT NULL,
+  nombre varchar(45) DEFAULT NULL,
+  apellido varchar(45) DEFAULT NULL,
+  direccion varchar(45) DEFAULT NULL,
+  fechadenacimiento date DEFAULT NULL,
+  telefono int(11) DEFAULT NULL,
+  curso varchar(45) DEFAULT NULL,
+  rude int(11) DEFAULT NULL,
+  usuario_id int(11) NOT NULL,
+  PRIMARY KEY (ci,usuario_id),
+  KEY fk_informacion_usuario1_idx (usuario_id),
+  CONSTRAINT fk_informacion_usuario1 FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------
--- Table `tarea`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tarea` (
-  `idtarea` INT NOT NULL AUTO_INCREMENT,
-  `titulo` VARCHAR(45) NULL,
-  `descripcion` VARCHAR(45) NULL,
-  `tema` VARCHAR(45) NULL,
-  `nota` INT NULL,
-  `clase_idclase` INT NOT NULL,
-  PRIMARY KEY (`idtarea`, `clase_idclase`),
-  INDEX `fk_tarea_clase1_idx` (`clase_idclase` ASC),
-  CONSTRAINT `fk_tarea_clase1`
-    FOREIGN KEY (`clase_idclase`)
-    REFERENCES `clase` (`idclase`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+-- --------------------------------------------------------
+-- Tabla: tarea
+-- --------------------------------------------------------
+CREATE TABLE tarea (
+  idtarea int(11) NOT NULL AUTO_INCREMENT,
+  titulo varchar(45) DEFAULT NULL,
+  descripcion varchar(45) DEFAULT NULL,
+  tema varchar(45) DEFAULT NULL,
+  nota int(11) DEFAULT NULL,
+  clase_idclase int(11) NOT NULL,
+  PRIMARY KEY (idtarea,clase_idclase),
+  KEY fk_tarea_clase1_idx (clase_idclase),
+  CONSTRAINT fk_tarea_clase1 FOREIGN KEY (clase_idclase) REFERENCES clase (idclase) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------
--- Table `entrega`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `entrega` (
-  `id_usuario` INT NOT NULL,
-  `tarea_idtarea` INT NOT NULL,
-  `nota` INT NULL,
-  `fechaentrega` DATETIME NULL,
-  PRIMARY KEY (`id_usuario`, `tarea_idtarea`),
-  INDEX `fk_usuario_has_tarea_tarea1_idx` (`tarea_idtarea` ASC),
-  INDEX `fk_usuario_has_tarea_usuario1_idx` (`id_usuario` ASC),
-  CONSTRAINT `fk_usuario_has_tarea_usuario1`
-    FOREIGN KEY (`id_usuario`)
-    REFERENCES `usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usuario_has_tarea_tarea1`
-    FOREIGN KEY (`tarea_idtarea`)
-    REFERENCES `tarea` (`idtarea`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+-- --------------------------------------------------------
+-- Tabla: entrega
+-- --------------------------------------------------------
+CREATE TABLE entrega (
+  id_usuario int(11) NOT NULL,
+  tarea_idtarea int(11) NOT NULL,
+  nota int(11) DEFAULT NULL,
+  fechaentrega datetime DEFAULT NULL,
+  PRIMARY KEY (id_usuario,tarea_idtarea),
+  KEY fk_usuario_has_tarea_tarea1_idx (tarea_idtarea),
+  KEY fk_usuario_has_tarea_usuario1_idx (id_usuario),
+  CONSTRAINT fk_usuario_has_tarea_tarea1 FOREIGN KEY (tarea_idtarea) REFERENCES tarea (idtarea) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT fk_usuario_has_tarea_usuario1 FOREIGN KEY (id_usuario) REFERENCES usuario (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- --------------------------------------------------------
+-- Tabla: comentarios
+-- --------------------------------------------------------
+CREATE TABLE comentarios (
+  idcomentarios int(11) NOT NULL AUTO_INCREMENT,
+  cuenta varchar(45) DEFAULT NULL,
+  fechaE datetime DEFAULT NULL,
+  fechaC datetime DEFAULT NULL,
+  publicacion varchar(45) DEFAULT NULL,
+  clase_idclase int(11) NOT NULL,
+  PRIMARY KEY (idcomentarios,clase_idclase),
+  KEY fk_comentarios_clase1_idx (clase_idclase),
+  CONSTRAINT fk_comentarios_clase1 FOREIGN KEY (clase_idclase) REFERENCES clase (idclase) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+-- Tabla: publicaciones
+-- --------------------------------------------------------
+CREATE TABLE publicaciones (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  usuario_id int(11) NOT NULL,
+  nombre varchar(255) NOT NULL,
+  fecha date NOT NULL,
+  mensaje text NOT NULL,
+  PRIMARY KEY (id),
+  KEY usuario_id (usuario_id),
+  CONSTRAINT publicaciones_ibfk_1 FOREIGN KEY (usuario_id) REFERENCES usuario (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

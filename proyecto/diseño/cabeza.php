@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
-    <title>Document</title>
-    <style>
-        .header{
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
+  <title>Document</title>
+  <style>
+    .header {
       background-color: white;
       display: flex;
       justify-content: space-between;
@@ -16,31 +16,40 @@
       gap: 15px;
       animation: slideDown 1s ease-in-out;
     }
-.header img {
+
+    .header img {
       height: 80px;
     }
 
     #pp {
-      font-family: 'Anton', sans-serif;
-      font-size: 4vw;
-      color:#062870 ;
-      text-shadow: 5px 5px 5px rgba(161, 159, 185, 1);
+      font-family:'Montserrat', sans-serif;
+      font-size: 5vw;
+      text-shadow: 2px 2px 4px #002a61;
       text-transform: uppercase;
       text-align: center;
       margin: 0;
-      animation: glow 1.5s infinite alternate;
+      color: #002a61; 
+      transition: all 0.4s ease; 
     }
-     
-    </style>
 
+    #pp:hover {
+      transform: scale(1.05);
+    }
+
+  
+    a {
+      text-decoration: none;
+      color: inherit; 
+    }
+
+   
+  </style>
 </head>
 <body>
-     <header class="header">
-    <img class="im" src="logo.png">
-    <h1 id="pp">LA SALLE DE CONVENIO</h1>
-    <img class="im" src="logo.png">
-</header>
-
-
+  <header class="header">
+    <img class="im" src="logo.png" alt="Logo Izquierda">
+    <h1 id="pp"><a href="principal.php">LA SALLE DE CONVENIO</a></h1>
+    <img class="im" src="logo.png" alt="Logo Derecha">
+  </header>
 </body>
 </html>
