@@ -16,14 +16,11 @@ $servername="localhost";
     $resultado= $conn->query($sql);
     
     if ($conn->query($sql) === TRUE) {
-        if($conn->query($sql) === TRUE){
-echo"<script>alert('Se borro correctamente')</script>";
+       echo"<script>alert('Se borro correctamente')</script>";
    
         }else{ 
             echo"<script>alert('algo salio mal intentelo de nuevo')</script>";
         }
-     
-    } 
     $conn->close();
 
 

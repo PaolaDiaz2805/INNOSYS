@@ -151,7 +151,7 @@
 
   <section id="comentarios">
     <h2>Deja tu comentario</h2>
-    <form action="comentario.php" method="post" novalidate>
+    <form action="../diseño/comentario.php" method="post" novalidate>
       <textarea name="com" placeholder="Comentario privado" required></textarea>
       <br>
       <button type="submit">Enviar</button>
