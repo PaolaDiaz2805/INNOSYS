@@ -23,6 +23,14 @@ if ($conn->connect_error) {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <style>
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 2em;
+      color: #062870;
+      text-transform: uppercase;
+      margin: 0;
+    }
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;

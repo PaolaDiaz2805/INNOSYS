@@ -7,38 +7,36 @@ if (!isset($_SESSION['id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['archivo'])) {
     $archivo = $_FILES['archivo'];
-    $tarea_id = $_POST['tarea_id']; // ID de la tarea que se va a editar
+    $tarea_id = $_POST['tarea_id']; 
 
-    // Validar el archivo
     $allowed_ext = ['pdf', 'docx', 'pptx'];
     $ext = pathinfo($archivo['name'], PATHINFO_EXTENSION);
 
-    // Validar la extensión del archivo
+    
     if (!in_array($ext, $allowed_ext)) {
         echo "El archivo no tiene una extensión permitida.";
         exit();
     }
 
-    // Validar el tamaño del archivo
-    $max_file_size = 5 * 1024 * 1024; // 5 MB
+    
+    $max_file_size = 5 * 1024 * 1024; 
     if ($archivo['size'] > $max_file_size) {
         echo "El archivo es demasiado grande. El tamaño máximo permitido es 5MB.";
         exit();
     }
 
-    // Subir el nuevo archivo
     $upload_dir = 'uploads/tareas/';
     $safe_name = preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', $archivo['name']);
     $file_path = $upload_dir . basename($safe_name);
 
-    // Comprobar si hubo un error al subir el archivo
+    
     if ($archivo['error'] !== UPLOAD_ERR_OK) {
         echo "Error al subir el archivo. Código de error: " . $archivo['error'];
         exit();
     }
 
     if (move_uploaded_file($archivo['tmp_name'], $file_path)) {
-        // Actualizar la base de datos
+        
         $conn = new mysqli("localhost", "root", "", "proyecto");
         if ($conn->connect_error) {
             die("Error de conexión: " . $conn->connect_error);

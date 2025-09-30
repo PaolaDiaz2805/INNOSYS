@@ -114,23 +114,18 @@ $servername="localhost";
 
 <button id="menu">+</button>
 <nav id="op">
-    <h1>BIENVENIDO PROFESOR!!</h1>
+    <h1>BIENVENIDO PROFES@R!!</h1>
     <a class="uni" href="../clases/unirse.php">Unirse</a>
     <a class="uni" href="../clases/crear.php">Crear</a>
 </nav>
 
 <nav>
-    <?php 
-    $sql="SELECT * FROM usuario ORDER BY id DESC";
-    $resultado = mysqli_query($conn,$sql);
-   
-    if ($row = mysqli_fetch_assoc($resultado)){ ?>
     <button id="esconder">☰ Menú</button>
-    <a id="ini" href="prinprof.php">INICIO</a>
-    <a id="inf" href="../usuarios/infouser.php?ci=<?php echo $row['id'];?> & rol=<?php echo $row['rol'];?>">INFORMACION</a>
+    <a id="ini" href="">INICIO</a>
+    <a id="inf" href="">INFORMACION</a>
     <a id="clas" href="">CLASES</a>
     <a id="per" href="">PERSONAS</a>
-    <a id="cer" href="../usuarios/cerrarsesion.php">CERRAR</a><?php } ?>
+    <a id="cer" href="">CERRAR</a>
 </nav>
 
 <script>
