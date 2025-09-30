@@ -36,7 +36,7 @@ nav a, #esconder {
             flex-direction: column;
             gap: 20px;
         }
-        #ini,#inf,#clas,#cer{
+        #ini,#inf,#clas,#per,#cer{
             height: 50px;
             color: black;
             padding: 20px;
@@ -84,7 +84,7 @@ nav a, #esconder {
               0 0 50px rgb(24, 22, 132);
               0 0 100px rgb(24, 22, 132);
         }
-        #op {
+         #op {
             top: 70px;
             position: absolute;
             right:0;
@@ -102,7 +102,7 @@ nav a, #esconder {
             text-decoration: none;
             padding: 4px 0;
             font-weight: normal;
-            font-size: 10px;
+            font-size: 12px;
             transition: background 0.2s;
             text-align: left;
         }
@@ -119,17 +119,12 @@ nav a, #esconder {
 
 </nav>
 
-<nav> 
-    <?php 
-    $sql="SELECT * FROM usuario ORDER BY id DESC";
-    $resultado = mysqli_query($conn,$sql);
-   
-    if ($row = mysqli_fetch_assoc($resultado)){ ?>
+<nav>
     <button id="esconder">☰ Menú</button>
-    <a id="ini" href="prinest.php">INICIO</a>
-    <a id="inf" href="../usuarios/infouser.php?ci=<?php echo $row['id'];?> & rol=<?php echo $row['rol'];?>">INFORMACION</a>
+    <a id="ini" href="">INICIO</a>
+    <a id="inf" href="">INFORMACION</a>
     <a id="clas" href="">CLASES</a>
-    <a id="cer" href="../usuarios/cerrarsesion.php">CERRAR</a><?php } ?>
+    <a id="cer" href="">CERRAR</a>
 </nav>
 
 <script>

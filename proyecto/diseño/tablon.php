@@ -25,7 +25,8 @@ if ($conn->connect_error) {
 
 $sql = "SELECT c.idcomentarios, c.cuenta, c.fechaE, c.publicacion, u.id AS user_id, u.rol 
         FROM comentarios c
-        JOIN usuario u ON c.usuario_id = u.id
+         JOIN clase_estudiante ce ON c.clase_idclase = ce.id_clase
+        JOIN usuario u ON ce.id_estudiante = u.id
         WHERE c.clase_idclase = '$clase_id'
         ORDER BY c.fechaE DESC";  
 $result = $conn->query($sql);
