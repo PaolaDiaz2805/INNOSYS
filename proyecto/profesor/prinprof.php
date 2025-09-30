@@ -21,104 +21,103 @@ if($conn->connect_error) {
 <title>Clases</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<style>
 
-body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #e7e7e7;
-    background-image: url('logo.png');
-    background-repeat: repeat;
-    background-size: 50% 50%;
-    background-attachment: fixed;
+  <style>
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 2em;
+      color: #062870;
+      text-transform: uppercase;
+      margin: 0;
+    }
 
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    grid-template-rows: 150px auto;
-    grid-template-areas:
-        "cabeza cabeza"
-        "menu contenido";
-    min-height: 100vh;
-}
+    body {
+      margin: 0;
+      background-color: #e7e7e7;
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      grid-template-rows: 150px auto;
+      grid-template-areas:
+          "cabeza cabeza"
+          "menu contenido";
+      gap: 10px;
+      min-height: 100vh;
 
-body::before {
-    content: "";
-    position: fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background-color: rgba(255,255,255,0.7);
-    z-index: -1;
-}
+      background-image: url('logo.png');
+      background-repeat: repeat;
+      background-size: 50% 50%;
+      background-attachment: fixed;
+      position: relative;
+    }
 
-header {
-    grid-area: cabeza;
-    width: 100%;
-}
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: -1;
+    }
 
-.menu {
-    grid-area: menu;
-    background-color: transparent;
-    z-index: 50;
-}
+    header {
+      grid-area: cabeza;
+      width: 100%;
+    }
 
-.contenido {
-    grid-area: contenido;
-    padding: 20px;
-    margin-left: 20px;
-}
+    nav.menu {
+      grid-area: menu;
+      background-color: transparent;
+      z-index: 50;
+    }
 
-.cajas {
-    background-color: rgba(255,255,255,0.9);
-    padding: 20px;
-    border-radius: 10px;
-    border: 3px double rgba(6, 32, 150, 1);
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-}
+    .contenido {
+      grid-area: contenido;
+      padding: 20px;
+      margin-left: 20px;
+    }
 
-.clase-card {
-    background: white;
-    border: 2px solid #062870;
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
-}
+    .cajas {
+      background-color: rgba(255,255,255,0.9);
+      padding: 20px;
+      border-radius: 10px;
+      border: 3px double rgba(6, 32, 150, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-.clase-card:hover {
-    transform: translateY(-5px);
-}
+    .cajas p {
+      font-size: 1.1em;
+      color: #333;
+      margin-bottom: 20px;
+    }
 
-.clase-card h2 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.2em;
-    color: #062870;
-    margin-bottom: 10px;
-}
+    button {
+      background-color: #005187;
+      height: 60px;
+      width: 100%;
+      max-width: 300px;
+      font-family: 'Trebuchet MS', sans-serif;
+      font-size: 18px;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-.clase-card p {
-    font-size: 0.9em;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.clase-card a {
-    display: inline-block;
-    background-color: #5c7fad;
-    color: white;
-    text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 0.9em;
-    transition: background 0.3s;
-}
-
-.clase-card a:hover {
-    background-color: #34495e;
-}
-</style>
+    button:hover {
+      background-color: #004170;
+      transform: scale(1.05);
+      box-shadow: 0 0 5px #fff,
+                  0 0 25px #fff,
+                  0 0 100px rgb(24, 22, 132);
+    }
+  </style>
 </head>
 <body>
 <header>
