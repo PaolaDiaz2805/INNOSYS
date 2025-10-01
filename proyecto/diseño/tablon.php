@@ -204,7 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 <nav class="nan">
   <?php
-  include("menuest.php");
+  include("../estudiante/menuest.php");
   ?>
 </nav>
 
@@ -215,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <article>
  <?php
-  include("tareas.php");
+  include("../estudiante/tarea.php"); //que pongo aca 
   ?>
   </aside>
 
