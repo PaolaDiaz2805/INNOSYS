@@ -84,7 +84,7 @@ if($conn->connect_error) {
     </style>
 </head>
 <body>
-    <h2>📋 Cuentas de Usuarios</h2>
+    <h2>Cuentas de Usuarios</h2>
     <table>
         <tr>
             <th>C.I</th>
