@@ -93,12 +93,12 @@
       grid-area:tres;
       background-color: white;
     }
-    #video img {
+    #video video {
      
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      animation: fadeIn 2s ease;
+   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
     }
 
 .cajas {
@@ -203,13 +203,7 @@
       
     }
 
-    .l {
-      background-color: rgba(31, 72, 150, 1);
-    }
-
-    .m {
-      background-color: rgba(16, 41, 126, 1);
-    }
+  
 
     article {
       grid-area: nueve;
@@ -299,6 +293,51 @@
 #comentarios button:hover {
   background-color: rgba(48, 45, 116, 1);
 }
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slides .l {
+  flex: 0 0 auto;
+  margin-right: 5px; /* espacio entre imágenes */
+}
+
+.carousel-slides .l img {
+  width: 550px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+@media (max-width: 768px) {
+  .carousel-slides .l img {
+    width: 100px;
+  }
+}
+
 @media (max-width: 768px){
  body {
   display: grid;
@@ -333,28 +372,33 @@
 </main>
 
 
-  <nav id="video">
-    <img src="dos.jpg" alt="Banner">
-  </nav>
+ <nav id="video">
+  <video width="100%" height="100%" autoplay loop muted >
+    <source src="uels.mp4" type="video/mp4">
+    Tu navegador no soporta la reproducción de video.
+  </video>
+</nav>
 
-  <nav class="cajas">
-    <div class="a">Estudiantes<br>
-    ㅤ<br>
-      500<br>
-    </div>
-    <div class="r">Profesores<br>
-      ㅤ<br>
-      37<br>
-    </div>
-    <div class="a">Aulas<br>
-      ㅤ<br>
-      25<br>
-    </div>
-    <div class="r">Administrativos<br>
-      ㅤ<br>
-      4<br>
-    </div>
-  </nav>
+<nav class="cajas">
+  <div class="a" style="text-align:center;">
+    Estudiantes
+    <span class="count-digit" data-count="500">
+       ㅤ0<br></span>
+  </div>
+  <div class="r" style="text-align:center;">
+    Profesores<br>
+    <span class="count-digit" data-count="37">0</span>
+  </div>
+  <div class="a" style="text-align:center;">
+    Aulas<br>
+    <span class="count-digit" data-count="25">0</span>
+  </div>
+  <div class="r" style="text-align:center;">
+    Administrativos<br>
+    <span class="count-digit" data-count="4">0</span>
+  </div>
+</nav>
+
 
   <aside class="text1">
   <p>
@@ -371,7 +415,7 @@
     </p>
   </aside>
   
-  <div class="text2"><a href="../clases/intro.php">Estudiantes o Profesor o Administrador</a> </div>
+  <div class="text2"><a href="../clases/intro.php">Estudiantes, Profesor o Administrador</a> </div>
 
   <aside class="text3">
     Últimas noticias
@@ -380,12 +424,21 @@
   </aside>
 
   <nav class="cajas2">
-    <div class="l"></div>
-    <div class="m"></div>
-    <div class="l"></div>
-    <div class="m"></div>
-    <div class="l"></div>
-    <div class="m"></div>
+    <div class="carousel-container">
+      <div class="carousel-slides">
+<?php
+        for($contador=1; $contador<=48; $contador++){
+          $url="../imagenes/img (".$contador.").jpg";
+          $alt="Imagen ".$contador;
+?>  
+          <div class="l"><img src="<?= $url?>" alt="<?=$alt?>"> </div>
+ <?php
+        }
+ ?>
+    </div>
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+  </div>
   </nav>
 
   <article>
@@ -434,5 +487,68 @@
     ?>
   </footer>
 </body>
-</html>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".count-digit");
+
+    counters.forEach(counter => {
+      const target = +counter.getAttribute("data-count");
+      let count = 0;
+      const duration = 2000; 
+      const stepTime = 20;  
+      const steps = duration / stepTime;
+      const increment = target / steps;
+
+      const update = () => {
+        count += increment;
+        if(count < target){
+          counter.textContent = Math.floor(count);
+          setTimeout(update, stepTime);
+        } else {
+          counter.textContent = target;
+        }
+      }
+
+      update();
+    });
+  });
+</script>
+
+<script>
+const slidesContainer = document.querySelector('.carousel-slides');
+const slides = document.querySelectorAll('.carousel-slides .l');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+
+let currentIndex = 0;
+
+
+const slideStyle = getComputedStyle(slides[0]);
+const slideWidth = slides[0].offsetWidth + parseInt(slideStyle.marginRight);
+
+const visibleSlides = Math.floor(document.querySelector('.carousel-container').offsetWidth / slideWidth);
+
+
+function updateCarousel(index) {
+  if(index < 0) currentIndex = slides.length - visibleSlides;
+  else if(index > slides.length - visibleSlides) currentIndex = 0;
+  else currentIndex = index;
+  
+  slidesContainer.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+}
+
+
+prevBtn.addEventListener('click', () => updateCarousel(currentIndex - 1));
+nextBtn.addEventListener('click', () => updateCarousel(currentIndex + 1));
+
+
+setInterval(() => updateCarousel(currentIndex + 1), 1000);
+
+
+window.addEventListener('resize', () => {
+  updateCarousel(currentIndex);
+});
+</script>
+
+</html>
