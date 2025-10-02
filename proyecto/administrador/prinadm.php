@@ -177,7 +177,7 @@
     <div>
       <h1>Bienvenido</h1>
       <p>Este es el contenido principal de la página.</p>
-      <button>Acción Principal</button>
+    <a href="../diseño/principal.php"> <button >Pagina Principal</button></a>
     </div>
   </main>
 </body>
