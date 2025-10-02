@@ -9,6 +9,13 @@ if ($clase_id == null) {
     echo "<script>alert('ID de clase no válido'); window.location = 'index.php';</script>";
     exit;
 }
+if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
+    header("Location:../diseño/principal.php");
+    exit();
+}
+if(isset($_GET['rol']) && !empty($_GET['rol'])){
+    $_SESSION['rol'] = $_GET['rol'];
+}
 
 $usuario_id = $_SESSION['ci'];  
 
@@ -44,6 +51,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<script>alert('Error al crear la publicación');</script>";
     }
 }
+$sql2= "SELECT * FROM clase WHERE idclase='$clase_id'";
+ $resultado2=$conn->query($sql2);
+ if($resultado2->num_rows>0){
+   $fila= $resultado2->fetch_assoc();
+   $nombre=$fila['nombre'];
+   $curso=$fila['curso'];
+    }
+
+ 
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -210,16 +226,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <div class="main">
   <div class="header">
-    <h1>Matemáticas - 6to Secundaria</h1>
+    <?php echo"<h1>$nombre - $curso</h1>"?>
   </div>
 
   <article>
- <?php
-  include("../estudiante/tarea.php"); //que pongo aca 
-  ?>
+ 
   </aside>
 
-  <div class="content">
+  <div class="content"> 
+   <?php
+   $contador=0;
+   $max=1;
+    while(isset($_SESSION['rol']) && $_SESSION['rol'] === 'profesor' && $contador < $max){ ?> <!--NO SE PORQUE NO DA-->
+    <button onclick="window.location.href='../tarea/tarea.php'">Crear tarea</button>
+<?php $contador++;} ?>
+     
+    
     <div class="card">
       <h3>✏️ Nueva publicación</h3>
       <form action="publicacion.php" method="post">
