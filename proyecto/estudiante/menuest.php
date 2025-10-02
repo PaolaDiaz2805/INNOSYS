@@ -127,7 +127,7 @@ nav a, #esconder {
     <button id="esconder">☰ Menú</button>
     <a id="ini" href="prinest.php">INICIO</a>
     <a id="inf" href="../usuarios/infouser.php?ci=<?php echo $row['id'];?> & rol=<?php echo $row['rol'];?>">INFORMACION</a>
-    <a id="clas" href="misclasesest.php">CLASES</a>
+    <a id="clas" href="../estudiante/misclasesest.php">CLASES</a>
     <a id="cer" href="../usuarios/cerrarsesion.php">CERRAR</a><?php } ?>
 </nav>
 

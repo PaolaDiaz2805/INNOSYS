@@ -220,7 +220,17 @@ $sql2= "SELECT * FROM clase WHERE idclase='$clase_id'";
 <body>
 <nav class="nan">
   <?php
-  include("../estudiante/menuest.php");
+  if($_SESSION['rol']=="estudiante"){
+                        include("../estudiamte/menuest.php");
+                    }
+                    if($_SESSION['rol']=="profesor"){
+                        include("../profesor/menu.php");
+                    }
+                    if($_SESSION['rol']=="administrador"){
+                       include("../administrador/menu.php");
+                    }
+     
+  
   ?>
 </nav>
 

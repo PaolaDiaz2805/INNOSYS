@@ -127,8 +127,8 @@ $servername="localhost";
     <button id="esconder">☰ Menú</button>
     <a id="ini" href="prinprof.php">INICIO</a>
     <a id="inf" href="../usuarios/infouser.php?ci=<?php echo $row['id'];?> & rol=<?php echo $row['rol'];?>">INFORMACION</a>
-    <a id="clas" href="misclasesprof.php?ci=<?php echo $row['id'];?>">CLASES</a>
-    <a id="per" href="personas.php">PERSONAS</a>
+    <a id="clas" href="../profesor/misclasesprof.php?ci=<?php echo $row['id'];?>">CLASES</a>
+    <a id="per" href="../profesor/personas.php">PERSONAS</a>
     <a id="cer" href="../usuarios/cerrarsesion.php">CERRAR</a><?php }?>
 </nav>
 
