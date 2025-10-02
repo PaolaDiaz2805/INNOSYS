@@ -13,6 +13,7 @@
       max-width: 100%;
       height: auto;
     }
+    
     body {
       display: grid;
       grid-template-columns: 30% 40% 30%;
@@ -216,16 +217,14 @@ include("panza.php");
   <article>
     <h3>MISIÓN</h3>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pulvinar
-      sapien hendrerit ante congue, at pharetra arcu cursus. Duis pellentesque
-      sed ipsum et luctus.
+Formar integralmente a nuestros estudiantes desde una educación de calidad, inspirada en los valores del Evangelio y la identidad lasallista.
+Promovemos el desarrollo académico, humano y espiritual mediante el uso de estrategias pedagógicas diversificadas, la participación en proyectos, concursos y experiencias 
+que fortalezcan habilidades, fomentando además la solidaridad, la fe y el compromiso social.
     </p>
 
     <h3>VISIÓN</h3>
     <p>
-      Curabitur ac ligula ac neque sollicitudin pellentesque. Integer ante dui,
-      viverra sit amet tristique id, luctus sed risus. Nulla rhoncus magna
-      ullamcorper, iaculis magna nec, bibendum ligula.
+Ser una institución educativa referente en innovación pedagógica y tecnológica, que integre inteligencia artificial, plataformas virtuales y enfoques de neuroeducación para personalizar el aprendizaje. Aspiramos a consolidar redes entre niveles e instituciones La Salle, con aulas inteligentes y espacios modernos, que potencien la formación de líderes cristianos, capaces de transformar la sociedad con responsabilidad, ética y fe.
     </p>
 
     <h3>IDENTIDAD</h3>
@@ -234,6 +233,7 @@ include("panza.php");
       varius laoreet et elit. Nulla a fringilla enim, vel efficitur justo.
       Donec porta est ac ultricies fermentum. Nunc vitae nunc sapien.
     </p>
+    
   </article>
 
   <aside>

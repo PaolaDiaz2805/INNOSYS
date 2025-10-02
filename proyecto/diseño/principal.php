@@ -402,16 +402,10 @@
 
   <aside class="text1">
   <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pulvinar
-      sapien hendrerit ante congue, at pharetra arcu cursus. Duis pellentesque
-      sed ipsum et luctus. Curabitur ac ligula ac neque sollicitudin
-      pellentesque. Integer ante dui, viverra sit amet tristique id, luctus sed
-      risus. Nulla rhoncus magna ullamcorper, iaculis magna nec, bibendum
-      ligula. Sed et dignissim ex, at lacinia nibh. Fusce eu sapien quis massa
-      consequat varius laoreet et elit. Nulla a fringilla enim, vel efficitur
-      justo. Donec porta est ac ultricies fermentum. Nunc vitae nunc sapien.
-      Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-      ridiculus mus. Nam et mauris magna.
+Nos alegra recibirlos en nuestra comunidad educativa, un espacio donde la fe, el conocimiento y los valores se unen para formar personas íntegras, solidarias y comprometidas con la sociedad.
+Como colegio católico, inspiramos nuestro caminar los principios Cristianos, promoviendo una educación que fortalezca la fe, el amor al prójimo y el respeto por la dignidad de cada persona.
+En La Salle  creemos que cada estudiante es un don de Dios, y nuestra misión es acompañarlos en su desarrollo académico, espiritual y humano, cultivando talentos, fomentando la responsabilidad y guiando hacia una vida con propósito.
+¡Gracias por visitarnos!
     </p>
   </aside>
   
