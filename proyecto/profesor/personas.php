@@ -88,9 +88,35 @@ $ci = $_SESSION['ci'];
         a:hover {
             opacity: 0.85;
         }
+        .boton {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #264886e0;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  line-height: 48px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.boton:hover {
+  background-color: #203a6be0;
+   transform: scale(1.02);
+}
+
     </style>
 </head>
 <body>
+    <a href="prinprof.php" class="boton">←</a>
     <h2>Personas</h2>
     <table>
         <tr>

@@ -31,7 +31,7 @@ $rol=$_SESSION['rol'];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BIENVENIDO!! Usuario - Ximena Ugarte</title>
+  <title>BIENVENIDO</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -150,9 +150,27 @@ $rol=$_SESSION['rol'];
       width: 220px;
       color: #555;
     }
+    .boton {
+  background-color: #264886e0;
+  
+}
+
+
+
   </style>
 </head>
 <body>
+ <?php
+  if($_SESSION['rol']=="estudiante"){ ?>
+  <a href="../estudiante/prinest.php" class="boton">←</a>
+  <?php }
+  if($_SESSION['rol']=="profesor"){ ?>
+  <a href="../profesor/prinprof.php" class="boton">←</a>
+  <?php }
+  if($_SESSION['rol']=="administrador"){ ?>
+  <a href="../administrador/prinadm.php" class="boton">←</a>             
+  <?php }
+  ?>
   <div class="container">
     <?php if($row = $resultado->fetch_assoc()){
     if($row2 = $resultado2->fetch_assoc()){
@@ -180,13 +198,13 @@ $rol=$_SESSION['rol'];
         <tr><td>Dirección</td><td><?php echo $row2['direccion'];?></td></tr>
         <tr><td>Teléfono móvil</td><td><?php echo $row2['telefono'];?></td></tr>
         </table><?php if($_SESSION['rol']=="estudiante"){
-                        echo "<a href='../estudiante/formeditest.php?ci=$ci?rol='$rol><button>EDITAR</button></a><br>";
+                        echo "<a href='../estudiante/formeditest.php?ci=$ci&rol=$rol'><button class='boton'>EDITAR</button></a><br>";
                     }
                     if($_SESSION['rol']=="profesor"){
-                        echo "<a href='../profesor/formeditprof.php?ci=$ci?rol'=$rol><button>EDITAR</button></a><br>";
+                        echo "<a href='../profesor/formeditprof.php?ci=$ci&rol=$rol'><button class='boton'>EDITAR</button></a><br>";
                     }
                     if($_SESSION['rol']=="administrador"){
-                       echo "<a href='../administrador/formeditprof.php?ci=$ci?rol='$rol><button>EDITAR</button></a><br>";
+                       echo "<a href='../administrador/formeditadmin.php?ci=$ci&rol=$rol'><button class='boton'>EDITAR</button></a><br>";
                     }
      } }?>
     </div>
