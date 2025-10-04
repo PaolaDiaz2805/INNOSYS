@@ -14,7 +14,7 @@
 </head>
 <body>
     <footer class="do2">
-    aeghligref
+    PROYECTO-2025
   </footer> 
 </body>
 </html>
