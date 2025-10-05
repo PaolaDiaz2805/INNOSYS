@@ -14,7 +14,7 @@
 </head>
 <body>
     <footer class="do2">
-    PROYECTO-2025
+     © Proyecto 2025 uels
   </footer> 
 </body>
 </html>
