@@ -201,16 +201,8 @@ include("panza.php");
   <main class="maa">
     <h2>NUESTRA HISTORIA</h2>
     <p id="te">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pulvinar
-      sapien hendrerit ante congue, at pharetra arcu cursus. Duis pellentesque
-      sed ipsum et luctus. Curabitur ac ligula ac neque sollicitudin
-      pellentesque. Integer ante dui, viverra sit amet tristique id, luctus sed
-      risus. Nulla rhoncus magna ullamcorper, iaculis magna nec, bibendum
-      ligula. Sed et dignissim ex, at lacinia nibh. Fusce eu sapien quis massa
-      consequat varius laoreet et elit. Nulla a fringilla enim, vel efficitur
-      justo. Donec porta est ac ultricies fermentum. Nunc vitae nunc sapien.
-      Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-      ridiculus mus. Nam et mauris magna.
+La Salle Convenio es parte de una red internacional de colegios fundada por los Hermanos de las Escuelas Cristianas, basados en las enseñanzas y valores de San Juan Bautista de La Salle. Su educación busca formar a los estudiantes no solo en lo académico, sino también en lo humano, espiritual y social, para que sean personas comprometidas, líderes y solidarias.
+
     </p>
   </main>
 

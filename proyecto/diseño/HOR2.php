@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -11,37 +11,28 @@
       font-family: Arial, sans-serif;
       display: grid;
       grid-template-areas:
-        "header header"
-        "dos dos"
-        "primaria secundaria"
-        "footer footer";
-      grid-template-columns: 50% 50%;
-      grid-template-rows: 100px 40px 700px 150px;
+        "header"
+        "dos"
+        "secundaria"
+        "footer";
+      grid-template-columns: 100%;
+      grid-template-rows: 100px 40px 1fr 150px;
       gap: 15px;
       background-color: #f5f5f5;
       padding: 15px;
+      min-height: 100vh;
     }
 
     .cab {
       grid-area: header;
-    
     }
-     .mi {
-    
+
+    .mi {
       grid-area: dos;
-     
     }
 
     header img {
       height: 60px;
-    }
-
-    aside {
-      grid-area: primaria;
-      background-color: #00509d;
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
     }
 
     article {
@@ -52,38 +43,27 @@
       border-radius: 10px;
     }
 
-    .fo{
+    .fo {
       grid-area: footer;
-      
     }
-     
-    .pri, .sec {
-  background-color: rgba(255, 255, 255, 0.15);
-  padding: 10px;
-  margin: 6px 0;
-  border: 2px solid white;
-  border-radius: 8px;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
 
-.pri:hover, .sec:hover {
-  transform: scale(1.05);
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
-
-   
-
-    aside::before {
-      content: "PRIMARIA";
-      font-size: 24px;
-      color: #ffc107;
-      font-weight: bold;
+    .sec-link {
       display: block;
-      margin-bottom: 10px;
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 10px;
+      margin: 6px 0;
+      border: 2px solid white;
+      border-radius: 8px;
       text-align: center;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .sec-link:hover {
+      transform: scale(1.05);
+      background-color: rgba(255, 255, 255, 0.3);
     }
 
     article::before {
@@ -98,71 +78,39 @@
 
     @media (max-width: 768px) {
       body {
-        display: grid;
-        grid-template-columns:100%;
-        grid-template-rows: 120px 60px 650px 650px 150px;
-        grid-template-areas:
-          "header"
-          "dos"
-          "primaria"
-          "secundaria"
-          "footer";
-       
-      background-color: #f5f5f5;
-       margin: 0;
-      padding: 0;
+        grid-template-rows: 120px 60px 1fr 150px;
+        padding: 10px;
       }
-
     }
   </style>
 </head>
 <body>
 
   <header class="cab">
- <?php 
-  include("cabeza.php");?>
+    <?php include("cabeza.php"); ?>
   </header>
- 
-<main class="mi">
-  <?php 
-  include("panza.php");?>
-</main>
- 
 
-  <aside>
-    <div class="pri">PRIMERO-A</div>
-    <div class="pri">PRIMERO-B</div>
-    <div class="pri">SEGUNDO-A</div>
-    <div class="pri">SEGUNDO-B</div>
-    <div class="pri">TERCERO-A</div>
-    <div class="pri">TERCERO-B</div>
-    <div class="pri">CUARTO-A</div>
-    <div class="pri">CUARTO-B</div>
-    <div class="pri">QUINTO-A</div>
-    <div class="pri">QUINTO-B</div>
-    <div class="pri">SEXTO-A</div>
-    <div class="pri">SEXTO-B</div>
-  </aside>
+  <main class="mi">
+    <?php include("panza.php"); ?>
+  </main>
 
   <article>
-    <div class="sec">PRIMERO-A</div>
-    <div class="sec">PRIMERO-B</div>
-    <div class="sec">SEGUNDO-A</div>
-    <div class="sec">SEGUNDO-B</div>
-    <div class="sec">TERCERO-A</div>
-    <div class="sec">TERCERO-B</div>
-    <div class="sec">CUARTO-A</div>
-    <div class="sec">CUARTO-B</div>
-    <div class="sec">QUINTO-A</div>
-    <div class="sec">QUINTO-B</div>
-    <div class="sec">SEXTO-A</div>
-    <div class="sec">SEXTO-B</div>
+    <a class="sec-link" href="hora1a.php">PRIMERO-A</a>
+    <a class="sec-link" href="hora1b.php">PRIMERO-B</a>
+    <a class="sec-link" href="hora2a.php">SEGUNDO-A</a>
+    <a class="sec-link" href="hora2b.php">SEGUNDO-B</a>
+    <a class="sec-link" href="hora3a.php">TERCERO-A</a>
+    <a class="sec-link" href="hora3b.php">TERCERO-B</a>
+    <a class="sec-link" href="hora4a.php">CUARTO-A</a>
+    <a class="sec-link" href="hora4b.php">CUARTO-B</a>
+    <a class="sec-link" href="hora5a.php">QUINTO-A</a>
+    <a class="sec-link" href="hora5b.php">QUINTO-B</a>
+    <a class="sec-link" href="hora6a.php">SEXTO-A</a>
+    <a class="sec-link" href="hora6b.php">SEXTO-B</a>
   </article>
 
   <footer class="fo">
-    <?php
-    include("pie.php")
-    ?>
+    <?php include("pie.php") ?>
   </footer>
 
 </body>
