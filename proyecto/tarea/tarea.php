@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <?php
+    $idclase = isset($_GET['idclas']) ? $_GET['idclas'] : null; 
+    if ($idclase == null) {
+    echo "<script>alert('ID de clase no válido'); window.location = 'index.php';</script>";
+    exit;
+    }
+    ?>
     <style>
     body {
        font-family: cursive;
@@ -117,6 +124,7 @@
  <form action="tareamost.php" method="post" novalidate>
     <h1>CREA LA TAREA </h1>
     <h2>Llena el formulario</h2>
+    <input type="hidden" name="idclase" value="<?php echo $idclase; ?>">
     <label for="nom">TÍTULO DEL TRABAJO </label><br>
     <input type="text" name="tt" placeholder="Nombra a tu trabajo (obligatorio)" /><br>
     <label for="mat">INSTRUCCIONES</label><br>

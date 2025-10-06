@@ -10,11 +10,16 @@ $servername="localhost";
         echo "Ocurrio un error :( vuelve a intentarlo";
     }
     session_start();
+    if (isset($_POST['idclase']) && !empty($_POST['idclase'])) {
+    $idclase = $_POST['idclase'];
+} else {
+    echo "No se recibió el ID de la clase.";
+}
     $titulo=$_POST['tt'];
     $descripcion=$_POST['in'];
     $tema=$_POST['tem'];
     $nota=$_POST['pun'];
-    $sql="INSERT INTO tarea (titulo, descripcion, tema, nota, clase_idclase) VALUES('$titulo','$descripcion','$tema','$nota', '3')";
+    $sql="INSERT INTO tarea (titulo, descripcion, tema, nota, clase_idclase) VALUES('$titulo','$descripcion','$tema','$nota', '$idclase')";
     if ($conn->query($sql) === TRUE) {
     echo "Se subio la tarea exitosamente"; 
     $sql2="SELECT * FROM tarea WHERE titulo='$titulo'";
@@ -25,7 +30,7 @@ $servername="localhost";
     $_SESSION['des']=$fila['descripcion'];
     $_SESSION['tem']=$fila['tema'];
     $_SESSION['not']=$fila['nota'];
-    header ("location:editartareaform.php");
+    
     
     }else{
         echo "error";

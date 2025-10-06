@@ -205,8 +205,26 @@ $sql2= "SELECT * FROM clase WHERE idclase='$clase_id'";
       background: #eaeaea;
       margin-top: auto;
     }
+.tarea-card {
+    background: white;
+    border: 2px solid #062870;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-  
+  .tarea-card a {
+    display: inline-block;
+    background-color: #005187;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    transition: background 0.3s;
+}
     @media screen and (max-width: 768px) {
       body {
         flex-direction: column;
@@ -221,7 +239,7 @@ $sql2= "SELECT * FROM clase WHERE idclase='$clase_id'";
 <nav class="nan">
   <?php
   if($_SESSION['rol']=="estudiante"){
-                        include("../estudiamte/menuest.php");
+                        include("../estudiante/menuest.php");
                     }
                     if($_SESSION['rol']=="profesor"){
                         include("../profesor/menu.php");
@@ -244,20 +262,25 @@ $sql2= "SELECT * FROM clase WHERE idclase='$clase_id'";
   </aside>
 
   <div class="content"> 
-   <?php
-   $contador=0;
-   $max=1;
-    while(isset($_SESSION['rol']) && $_SESSION['rol'] === 'profesor' && $contador < $max){ ?> <!--NO SE PORQUE NO DA-->
-    <button onclick="window.location.href='../tarea/tarea.php'">Crear tarea</button>
-<?php $contador++;} ?>
-     
+   
+   <?php 
+   $clase_id = mysqli_real_escape_string($conn, $clase_id); 
+   $sql3="SELECT * FROM clase WHERE idclase='$clase_id'";
+    $resultado = mysqli_query($conn,$sql3);
+   
+    if ($row = mysqli_fetch_assoc($resultado)){ 
+    if(isset($_SESSION['rol']) && $_SESSION['rol'] === 'profesor'){ 
+ echo "<button onclick=\"window.location.href='../tarea/tarea.php?idclas={$row['idclase']}'\">Crear tarea</button>"; 
+} 
+ } ?>
     
     <div class="card">
       <h3>✏️ Nueva publicación</h3>
       <form action="publicacion.php" method="post">
-        <label for="nom">Nombre:</label>
+      
+      <label for="nom">Nombre:</label>
         <input type="text" id="nom" name="nombre" required>
-
+   
         <label for="fecha">Fecha:</label>
         <input type="date" id="fecha" name="fecha" required>
 
@@ -268,6 +291,32 @@ $sql2= "SELECT * FROM clase WHERE idclase='$clase_id'";
       </form>
     </div>
   </div>
+ <?php
+$clase_id = $_GET['id'] ?? 0; 
+
+$sql = "SELECT idtarea, titulo, nota FROM tarea WHERE clase_idclase = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $clase_id);
+$stmt->execute();
+$resultado = $stmt->get_result();
+
+if ($resultado->num_rows > 0) {
+    while ($tarea = $resultado->fetch_assoc()) {
+        $titulo = htmlspecialchars($tarea['titulo']);
+        $nota = htmlspecialchars($tarea['nota']);
+        $idtarea = $tarea['idtarea'];
+?>
+        <div class="tarea-card">
+            <h3><?= $titulo ?></h3>
+            <p><strong>Nota:</strong> <?= $nota ?></p>
+            <a href="detalle_tarea.php?id=<?= $idtarea ?>">Ver detalle</a>
+        </div><br>
+<?php
+    }
+} else {
+    echo "<p>No hay tareas subidas en esta clase.</p>";
+}
+?>
   <button>cerrar</button>
 
   <footer>
