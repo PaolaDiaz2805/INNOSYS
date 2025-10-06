@@ -6,7 +6,7 @@ if (!isset($_SESSION['ci'])) {
 }
 $clase_id = isset($_GET['id']) ? $_GET['id'] : null; 
 if ($clase_id == null) {
-    echo "<script>alert('ID de clase no válido'); window.location = 'index.php';</script>";
+    echo "<script>alert('ID de clase no válido');</script>";
     exit;
 }
 if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
