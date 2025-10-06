@@ -17,7 +17,7 @@
     body {
       display: grid;
       grid-template-columns: 30% 40% 30%;
-      grid-template-rows: 100px 40px 450px 450px 100px;
+      grid-template-rows: 100px 40px 250px 650px 100px;
       grid-template-areas:
         "head head head"
         "nv nv nv"
@@ -98,7 +98,7 @@
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       color: #0d47a1;
-      height: 420px;
+      height: 615px;
     }
 
     article h3 {
@@ -221,10 +221,15 @@ Ser una institución educativa referente en innovación pedagógica y tecnológi
 
     <h3>IDENTIDAD</h3>
     <p>
-      Sed et dignissim ex, at lacinia nibh. Fusce eu sapien quis massa consequat
-      varius laoreet et elit. Nulla a fringilla enim, vel efficitur justo.
-      Donec porta est ac ultricies fermentum. Nunc vitae nunc sapien.
-    </p>
+Nuestra identidad se fundamenta en el carisma de San Juan Bautista de La Salle, promoviendo una educación cristiana y humanista que valora la dignidad de cada persona. Nos caracterizamos por: 
+
+Una pedagogía centrada en el estudiante, abierta a la innovación y la evaluación continua. 
+
+El uso responsable de las TIC, la gamificación y metodologías activas para potenciar aprendizajes significativos. 
+
+Un compromiso con la equidad, buscando superar desigualdades de acceso digital y acompañando el crecimiento socioemocional de los estudiantes. 
+
+Una comunidad educativa que fortalece el vínculo entre familia, escuela y sociedad, guiada siempre por la fe, la fraternidad y el servicio.    </p>
     
   </article>
 

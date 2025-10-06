@@ -7,7 +7,7 @@
     <style>
  .do2{
       grid-area: die;
-       background-color: rgb(9, 14, 91);
+       background-color: rgba(64, 69, 136, 1);
        height: 150px;
     }
     </style>
