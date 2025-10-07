@@ -6,8 +6,16 @@ if (!isset($_SESSION['ci'])) {
 }
 $clase_id = isset($_GET['id']) ? $_GET['id'] : null; 
 if ($clase_id == null) {
-    echo "<script>alert('ID de clase no válido');</script>";
-    exit;
+   if ($_SESSION['rol'] === 'profesor') {
+        header("Location: ../profesor/prinprof.php");
+         exit;
+    } elseif ($_SESSION['rol'] === 'estudiante') {
+        header("Location: ../estudiante/prinest.php");
+         exit;
+    } else {
+        header("Location: ../diseño/principal.php");
+         exit;
+    }
 }
 if (!isset($_SESSION['ci']) || empty($_SESSION['ci'])) {
     header("Location:../diseño/principal.php");
@@ -225,6 +233,25 @@ $sql2= "SELECT * FROM clase WHERE idclase='$clase_id'";
     font-size: 0.9em;
     transition: background 0.3s;
 }
+.editar-btn {
+    display: inline-block;
+    background-color: #062870;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-family: 'Oswald', sans-serif;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 5px;
+    text-decoration: none;
+}
+
+.editar-btn:hover {
+    background-color: #003f66;
+    transform: translateY(-3px);
+}
     @media screen and (max-width: 768px) {
       body {
         flex-direction: column;
@@ -267,6 +294,7 @@ $sql2= "SELECT * FROM clase WHERE idclase='$clase_id'";
    $clase_id = mysqli_real_escape_string($conn, $clase_id); 
    $sql3="SELECT * FROM clase WHERE idclase='$clase_id'";
     $resultado = mysqli_query($conn,$sql3);
+   echo" <a class='editar-btn' href='../clases/editar.php'>Editar</a>";
    
     if ($row = mysqli_fetch_assoc($resultado)){ 
     if(isset($_SESSION['rol']) && $_SESSION['rol'] === 'profesor'){ 
@@ -309,7 +337,7 @@ if ($resultado->num_rows > 0) {
         <div class="tarea-card">
             <h3><?= $titulo ?></h3>
             <p><strong>Nota:</strong> <?= $nota ?></p>
-            <a href="detalle_tarea.php?id=<?= $idtarea ?>">Ver detalle</a>
+            <a href="../estudiante/tarea.php?id=<?= $idtarea ?>">Ver detalle</a>
         </div><br>
 <?php
     }

@@ -11,7 +11,9 @@
     }
  $codigo=$_POST['c1'];
  $nombre=$_POST['c2'];
-$sql="UPDATE clase SET nombre='$nombre' WHERE codigo='$codigo'";
+$sql = "UPDATE clase 
+        SET nombre = '$nombre', codigo = '$codigo'
+        WHERE codigo = '$codigo'";
 if($conn->query($sql)===TRUE){
     echo "Se edito correctamente";
    header("Location: ../profesor/prinprof.php");

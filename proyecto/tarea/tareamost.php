@@ -21,10 +21,6 @@ $servername="localhost";
     $nota=$_POST['pun'];
     $sql="INSERT INTO tarea (titulo, descripcion, tema, nota, clase_idclase) VALUES('$titulo','$descripcion','$tema','$nota', '$idclase')";
     if ($conn->query($sql) === TRUE) {
-    echo "Se subio la tarea exitosamente"; 
-    header("Location: ../diseño/tablon.php?id=$idclase");
-    exit();
-
     $sql2="SELECT * FROM tarea WHERE titulo='$titulo'";
     $resultado=$conn->query($sql2);
     $fila=$resultado->fetch_assoc();
@@ -33,7 +29,8 @@ $servername="localhost";
     $_SESSION['des']=$fila['descripcion'];
     $_SESSION['tem']=$fila['tema'];
     $_SESSION['not']=$fila['nota'];
-    
+    header("Location: ../diseño/tablon.php");
+    exit();
     
     }else{
         echo "error";

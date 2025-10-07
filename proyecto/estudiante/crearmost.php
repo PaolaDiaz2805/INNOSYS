@@ -57,7 +57,7 @@ $comentario = isset($_POST['comentario']) ? trim($_POST['comentario']) : null;
 $id_tarea = isset($_POST['id_tarea']) ? (int) $_POST['id_tarea'] : 0;
 
 $stmt = $mysqli->prepare(
-    "INSERT INTO entrega (idcuenta, idtarea, archivo, comentario, fecha_entrega) 
+    "INSERT INTO entrega (id_usuario, tarea_idtarea, archivo, comentario, fecha_entrega) 
     VALUES (?, ?, ?, ?, NOW())"
 );
 $stmt->bind_param("iiss", $id_estudiante, $id_tarea, $relativePath, $comentario);
