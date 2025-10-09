@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
     <style>
         body {
@@ -101,7 +102,7 @@
     </style>
 </head>
 <body>
-    <center> <form action="regestmost.php" method="post" >
+    <center> <form action="regestmost.php" method="post" id="editar-usuario" >
 
     <h1>ESTUDIANTE</h1>
     <h2>Llena el formulario con tus datos</h2>
@@ -153,12 +154,34 @@
 
     <div class="form-buttons"><br>
       <br> 
-      <input type="submit" value="Enviar">
+      <input type="submit" value="Enviar" id="btnGuardar">
       <input type="reset" value="Limpiar">
       <a id="x" href="../usuarios/logueo.php">Iniciar sesión</a>
     </div>
   </form>
+  
 </center>
+<script>
+    document.getElementById('btnGuardar').addEventListener('click', function(e) {
+    e.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¿Deseas guardar los cambios?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, guardar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Si confirma, se envía el formulario
+            document.getElementById('editar-usuario').submit();
+        }
+    });
+});
+</script>
 
 <script>
 $("form").validate({
